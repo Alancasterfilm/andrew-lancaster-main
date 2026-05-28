@@ -457,11 +457,10 @@
       <a href="#" class="nav-link" id="nav-director" onclick="showSection('director',this);showSub('feature-drama',document.querySelector('#section-director .sub-tab'));return false;">Director</a>
       <div class="nav-dropdown">
         <button class="nav-dropdown-item" onclick="showSection('director',document.getElementById('nav-director'));showSub('feature-drama',document.querySelector('#section-director .sub-tab:nth-child(1)'))">Feature Drama</button>
-        <button class="nav-dropdown-item" onclick="showSection('director',document.getElementById('nav-director'));showSub('feature-doc',document.querySelector('#section-director .sub-tab:nth-child(2)'))">Feature Documentary</button>
+        <button class="nav-dropdown-item" onclick="showSection('director',document.getElementById('nav-director'));showSub('documentary',document.querySelector('#section-director .sub-tab:nth-child(2)'))">Documentary</button>
         <button class="nav-dropdown-item" onclick="showSection('director',document.getElementById('nav-director'));showSub('tvc',document.querySelector('#section-director .sub-tab:nth-child(3)'))">TVC</button>
         <button class="nav-dropdown-item" onclick="showSection('director',document.getElementById('nav-director'));showSub('music-promo',document.querySelector('#section-director .sub-tab:nth-child(4)'))">Music Promo</button>
         <button class="nav-dropdown-item" onclick="showSection('director',document.getElementById('nav-director'));showSub('short-film',document.querySelector('#section-director .sub-tab:nth-child(5)'))">Short Film</button>
-        <button class="nav-dropdown-item" onclick="showSection('director',document.getElementById('nav-director'));showSub('short-doc',document.querySelector('#section-director .sub-tab:nth-child(6)'))">Short Documentary</button>
       </div>
     </div>
     <a href="#" class="nav-link" id="nav-composer"  onclick="showSection('composer',this);return false;">Composer</a>
@@ -579,20 +578,6 @@
       </div>
       <div class="vid-cap">TVC // Women&rsquo;s Cricket World Cup // Chrome</div>
     </div>
-    <div class="vid-card" onclick="openVideo('483824019','TVC Zariot')">
-      <div class="vid-thumb">
-        <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606395248765-RPUCBV7WYB3J1N2J7QQ1/image-asset.png?format=750w" loading="lazy" alt="TVC Zariot"/>
-        <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-      </div>
-      <div class="vid-cap">TVC // Zariot</div>
-    </div>
-    <div class="vid-card" onclick="openVideo('224451684','Krugerrand Legacy')">
-      <div class="vid-thumb">
-        <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1607079499466-XWJQ14L4QTUL3RQWSUHG/image-asset.png?format=750w" loading="lazy" alt="Krugerrand Legacy"/>
-        <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-      </div>
-      <div class="vid-cap">TVC // Krugerrand &lsquo;Legacy&rsquo;</div>
-    </div>
     <div class="vid-card" onclick="openVideo('32697871','RTA Speed Kills')">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606431977928-W1362KWVA1ZNABY71BU5/image-asset.png?format=750w" loading="lazy" alt="RTA Speed Kills"/>
@@ -608,11 +593,10 @@
   <div class="section-label">Directing</div>
   <div class="sub-tabs">
     <button class="sub-tab active" onclick="showSub('feature-drama',this)">Feature Drama</button>
-    <button class="sub-tab" onclick="showSub('feature-doc',this)">Feature Documentary</button>
+    <button class="sub-tab" onclick="showSub('documentary',this)">Documentary</button>
     <button class="sub-tab" onclick="showSub('tvc',this)">TVC</button>
     <button class="sub-tab" onclick="showSub('music-promo',this)">Music Promo</button>
     <button class="sub-tab" onclick="showSub('short-film',this)">Short Film</button>
-    <button class="sub-tab" onclick="showSub('short-doc',this)">Short Documentary</button>
   </div>
   <div class="sub-section active" id="sub-feature-drama">
     <div class="vid-grid">    <div class="vid-card" onclick="openVideo('38620802','Accidents Happen — Trailer w Geena Davis')">
@@ -630,7 +614,7 @@
       <div class="vid-cap">Feature Film // Accidents Happen &mdash; Teaser w Geena Davis</div>
     </div></div>
   </div>
-  <div class="sub-section" id="sub-feature-doc">
+  <div class="sub-section" id="sub-documentary">
     <div class="vid-grid">    <div class="vid-card" onclick="openVideo('1049333416','The Art of Sound Ep1 Preview')">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1751479495985-ODIQAYI43AJFKICBZ70M/image-asset.jpeg?format=750w" loading="lazy" alt="The Art of Sound Ep1 Preview"/>
@@ -659,6 +643,34 @@
       </div>
       <div class="vid-cap">Feature Documentary // The Lost Aviator &mdash; Trailer</div>
       <a class="vid-link" href="https://www.thelostaviator.com" target="_blank" onclick="event.stopPropagation()">thelostaviator.com</a>
+    </div>
+    <div class="vid-card" onclick="openVideo('279817902','Sothebys Mark Hix')">
+      <div class="vid-thumb">
+        <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606418170004-CETXQHPJTL8Y3CUQC4XW/image-asset.jpeg?format=750w" loading="lazy" alt="Sothebys Mark Hix"/>
+        <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+      </div>
+      <div class="vid-cap">Sotheby&rsquo;s &mdash; Mark Hix Contemporary Art</div>
+    </div>
+    <div class="vid-card" onclick="openVideo('228356286','Save Soho Pasquale')">
+      <div class="vid-thumb">
+        <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606599080799-YK6P4SHKA07FOUKV17K8/image-asset.png?format=750w" loading="lazy" alt="Save Soho Pasquale"/>
+        <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+      </div>
+      <div class="vid-cap">Save Soho &mdash; Pasquale</div>
+    </div>
+    <div class="vid-card" onclick="openVideo('57031222','Sonya Ryan Australian of the Year')">
+      <div class="vid-thumb">
+        <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606599646295-PO36TJ3G97EQRHI43TN4/image-asset.png?format=750w" loading="lazy" alt="Sonya Ryan Australian of the Year"/>
+        <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+      </div>
+      <div class="vid-cap">Sonya Ryan &mdash; Australian of the Year</div>
+    </div>
+    <div class="vid-card" onclick="openVideo('32698036','Town of Speed Gabby')">
+      <div class="vid-thumb">
+        <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606599286373-4B6S1HRIKTYVF3TU4JO3/image-asset.png?format=750w" loading="lazy" alt="Town of Speed Gabby"/>
+        <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+      </div>
+      <div class="vid-cap">Town of Speed &mdash; Gabby</div>
     </div></div>
   </div>
   <div class="sub-section" id="sub-tvc">
@@ -711,13 +723,6 @@
       </div>
       <div class="vid-cap">TVC // Krugerrand &lsquo;Legacy&rsquo;</div>
     </div>
-    <div class="vid-card" onclick="openVideo('279817902','Sothebys Mark Hix')">
-      <div class="vid-thumb">
-        <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606418170004-CETXQHPJTL8Y3CUQC4XW/image-asset.jpeg?format=750w" loading="lazy" alt="Sothebys Mark Hix"/>
-        <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-      </div>
-      <div class="vid-cap">Sotheby&rsquo;s &mdash; Mark Hix Contemporary Art</div>
-    </div>
     <div class="vid-card" onclick="openVideo('96550861','Vicks Vapour Fresh Fish')">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606598366431-856K1KP1T0S4A1WBUELI/image-asset.png?format=750w" loading="lazy" alt="Vicks Vapour Fresh Fish"/>
@@ -732,33 +737,12 @@
       </div>
       <div class="vid-cap">TVC // Road &amp; Traffic Authority &mdash; Speed Kills</div>
     </div>
-    <div class="vid-card" onclick="openVideo('904407016','Inshallah a Boy')">
+    <div class="vid-card" onclick="openVideo('730006443','UNITY — Open Works')">
       <div class="vid-thumb">
-        <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1743770259233-90RNDCC1UY0514WD8YCO/image-asset.jpeg?format=750w" loading="lazy" alt="Inshallah a Boy"/>
+        <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1658323180612-FOKVWSUL7FH8T43VUGKJ/image-asset.jpeg?format=750w" loading="lazy" alt="UNITY — Open Works"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
-      <div class="vid-cap">Inshallah a Boy</div>
-    </div>
-    <div class="vid-card" onclick="openVideo('697079907','LEGO Technic Hack the Pullback')">
-      <div class="vid-thumb">
-        <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1653209616906-EXL03JJGILTK8VWASBLP/image-asset.jpeg?format=750w" loading="lazy" alt="LEGO Technic Hack the Pullback"/>
-        <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-      </div>
-      <div class="vid-cap">LEGO Technic &mdash; Hack the Pullback</div>
-    </div>
-    <div class="vid-card" onclick="openVideo('560298901','McCafe')">
-      <div class="vid-thumb">
-        <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1653219034992-XPBM0DLQJ7TBDCIQNTOV/image-asset.jpeg?format=750w" loading="lazy" alt="McCafe"/>
-        <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-      </div>
-      <div class="vid-cap">McCafe</div>
-    </div>
-    <div class="vid-card" onclick="openVideo('310775389','Ladylucks TVC')">
-      <div class="vid-thumb">
-        <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606581701295-D2GC63LGKC9NR1A9SR0C/image-asset.png?format=750w" loading="lazy" alt="Ladylucks TVC"/>
-        <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-      </div>
-      <div class="vid-cap">TVC // Ladylucks</div>
+      <div class="vid-cap">UNITY &mdash; Open Works</div>
     </div></div>
   </div>
   <div class="sub-section" id="sub-music-promo">
@@ -818,20 +802,6 @@
       </div>
       <div class="vid-cap">Music Promo // The Wednesday Night &mdash; &lsquo;The Perfect Scene&rsquo;</div>
     </div>
-    <div class="vid-card" onclick="openVideo('730006443','UNITY — Open Works')">
-      <div class="vid-thumb">
-        <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1658323180612-FOKVWSUL7FH8T43VUGKJ/image-asset.jpeg?format=750w" loading="lazy" alt="UNITY — Open Works"/>
-        <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-      </div>
-      <div class="vid-cap">UNITY &mdash; Open Works</div>
-    </div>
-    <div class="vid-card" onclick="openVideo('697083199','The Desert Said Dance')">
-      <div class="vid-thumb">
-        <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1653218916284-YU74OX4NYW8N3CEKLI14/image-asset.jpeg?format=750w" loading="lazy" alt="The Desert Said Dance"/>
-        <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-      </div>
-      <div class="vid-cap">The Desert Said Dance &mdash; Official Trailer</div>
-    </div>
     <div class="vid-card" onclick="openVideo('281776426','Director Reel — Choreography')">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606396488583-Q193PGDDB004QI2C7TC1/image-asset.jpeg?format=750w" loading="lazy" alt="Director Reel — Choreography"/>
@@ -861,43 +831,6 @@
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">Short Film // In Search of Mike &mdash; Sundance / Dendy Award</div>
-    </div>
-    <div class="vid-card" onclick="openVideo('473934153','I Am You Feature Film Trailer')">
-      <div class="vid-thumb">
-        <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606595749827-DX78DEMFMKD9AUGGGMES/image-asset.png?format=750w" loading="lazy" alt="I Am You Feature Film Trailer"/>
-        <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-      </div>
-      <div class="vid-cap">I Am You &mdash; Feature Film Trailer</div>
-    </div></div>
-  </div>
-  <div class="sub-section" id="sub-short-doc">
-    <div class="vid-grid">    <div class="vid-card" onclick="openVideo('228356286','Save Soho Pasquale')">
-      <div class="vid-thumb">
-        <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606599080799-YK6P4SHKA07FOUKV17K8/image-asset.png?format=750w" loading="lazy" alt="Save Soho Pasquale"/>
-        <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-      </div>
-      <div class="vid-cap">Save Soho &mdash; Pasquale</div>
-    </div>
-    <div class="vid-card" onclick="openVideo('57031222','Sonya Ryan Australian of the Year')">
-      <div class="vid-thumb">
-        <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606599646295-PO36TJ3G97EQRHI43TN4/image-asset.png?format=750w" loading="lazy" alt="Sonya Ryan Australian of the Year"/>
-        <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-      </div>
-      <div class="vid-cap">Sonya Ryan &mdash; Australian of the Year</div>
-    </div>
-    <div class="vid-card" onclick="openVideo('32698036','Town of Speed Gabby')">
-      <div class="vid-thumb">
-        <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606599286373-4B6S1HRIKTYVF3TU4JO3/image-asset.png?format=750w" loading="lazy" alt="Town of Speed Gabby"/>
-        <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-      </div>
-      <div class="vid-cap">Town of Speed &mdash; Gabby</div>
-    </div>
-    <div class="vid-card" onclick="openVideo('541765854','Showtime Trailer')">
-      <div class="vid-thumb">
-        <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606600095010-EPIR4A82RZIL7N0OB0NC/image-asset.png?format=750w" loading="lazy" alt="Showtime Trailer"/>
-        <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-      </div>
-      <div class="vid-cap">Showtime Trailer 60&rsquo;</div>
     </div></div>
   </div>
 </div>
@@ -1002,18 +935,18 @@
     <div class="awards-heading">Selected Awards</div>
     <div class="awards-cols">
       <div>
-        <div class="award-cat">Music &amp; Sound</div>
-        <div class="award-entry"><div class="award-film">The Hunter</div><div class="award-detail">AACTA Award &mdash; Best Original Score</div></div>
-        <div class="award-entry"><div class="award-film">Universal Appliance Co.</div><div class="award-detail">AFI Award &mdash; Best Sound in Non-feature Film<br>Golden Reel Award USA</div></div>
-        <div class="award-entry"><div class="award-film">ARIA Awards</div><div class="award-detail">Best Australian Video &mdash; Custard &lsquo;Girls Like That&rsquo;<br>Best Australian Video &mdash; You Am I &lsquo;Soldiers&rsquo;</div></div>
-        <div class="award-entry"><div class="award-film">Palace Cafe</div><div class="award-detail">Ampex Award for Audio Excellence<br>Best Soundtrack &mdash; Dakino Bucharest</div></div>
-      </div>
-      <div>
         <div class="award-cat">Directing</div>
         <div class="award-entry"><div class="award-film">Town of Speed &mdash; TVC</div><div class="award-detail">Gold &mdash; New York Festival Awards<br>2&times; Silver CLIOs &middot; 2&times; Gold ADMA<br>Gold &mdash; Spikes Asia</div></div>
         <div class="award-entry"><div class="award-film">In Search of Mike</div><div class="award-detail">Rouben Mamoulian Award &mdash; Sydney Film Festival<br>Dendy Award &mdash; Sydney Film Festival<br>World Premiere &mdash; Sundance</div></div>
         <div class="award-entry"><div class="award-film">Accidents Happen</div><div class="award-detail">Special Jury Award &mdash; Giffoni Film Festival<br>Silver Audience Award &mdash; Sydney Film Festival<br>Nominated Best Film &mdash; Sitges</div></div>
         <div class="award-entry"><div class="award-film">Palace Cafe</div><div class="award-detail">Gold Plaque &mdash; Chicago International Film Festival<br>Dendy Award &mdash; Sydney Film Festival</div></div>
+      </div>
+      <div>
+        <div class="award-cat">Music &amp; Sound</div>
+        <div class="award-entry"><div class="award-film">The Hunter</div><div class="award-detail">AACTA Award &mdash; Best Original Score</div></div>
+        <div class="award-entry"><div class="award-film">Universal Appliance Co.</div><div class="award-detail">AFI Award &mdash; Best Sound in Non-feature Film<br>Golden Reel Award USA</div></div>
+        <div class="award-entry"><div class="award-film">ARIA Awards</div><div class="award-detail">Best Australian Video &mdash; Custard &lsquo;Girls Like That&rsquo;<br>Best Australian Video &mdash; You Am I &lsquo;Soldiers&rsquo;</div></div>
+        <div class="award-entry"><div class="award-film">Palace Cafe</div><div class="award-detail">Ampex Award for Audio Excellence<br>Best Soundtrack &mdash; Dakino Bucharest</div></div>
       </div>
     </div>
   </div>
