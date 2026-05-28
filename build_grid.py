@@ -295,14 +295,18 @@ html_out = f"""<!DOCTYPE html>
     /* ── DIRECTOR DROPDOWN ──────────────────────────────── */
     .nav-item {{ position:relative; }}
     .nav-dropdown {{
-      position:absolute; top:calc(100% + 18px); left:-18px;
+      position:absolute; top:100%; left:-18px;
       background:var(--bg);
       border:1px solid var(--border);
       min-width:210px;
       display:none; flex-direction:column;
       z-index:200;
-      padding:8px 0;
+      padding-top:18px; padding-bottom:8px;
       box-shadow:0 8px 24px rgba(0,0,0,0.07);
+    }}
+    .nav-dropdown::before {{
+      content:''; position:absolute;
+      top:0; left:0; right:0; height:18px;
     }}
     .nav-item:hover .nav-dropdown {{ display:flex; }}
     .nav-dropdown-item {{
