@@ -84,6 +84,7 @@ short_doc = [
 ]
 
 composer = [
+  ("yt_xj_lLatwwrU", "The Vile — Trailer",          "https://i.ytimg.com/vi/xj_lLatwwrU/maxresdefault.jpg",               "Composer // The Vile &mdash; BFI London Film Festival 2025"),
   ("904407016", "Inshallah a Boy",                  BASE+"1743770259233-90RNDCC1UY0514WD8YCO/image-asset.jpeg?format=750w", "Composer // Inshallah a Boy"),
   ("697079907", "LEGO Technic Hack the Pullback",   BASE+"1653209616906-EXL03JJGILTK8VWASBLP/image-asset.jpeg?format=750w","Composer // LEGO Technic &mdash; Hack the Pullback"),
   ("473934153", "I Am You Feature Film Trailer",    BASE+"1606582505487-9SRVC3X5JW8S2A0O7BQC/image-asset.png?format=750w", "Composer // I Am You &mdash; Feature Film Trailer"),
@@ -271,20 +272,20 @@ html_out = f"""<!DOCTYPE html>
     }}
     .logo-first, .logo-last {{
       font-family:'Josefin Sans', var(--sans);
-      font-size:15px; font-weight:600;
+      font-size:18px; font-weight:600;
       letter-spacing:0.32em; text-transform:uppercase;
       color:var(--text); line-height:1.15;
     }}
     .logo-sub {{
-      font-family:var(--sans); font-size:8px; font-weight:300;
+      font-family:var(--sans); font-size:9.5px; font-weight:300;
       letter-spacing:0.44em; text-transform:uppercase;
       color:var(--muted); margin-top:7px; padding-left:14px;
     }}
     nav {{ display:flex; gap:28px; align-items:center; }}
     .nav-link {{
-      font-family:var(--sans); font-size:11px; font-weight:400;
+      font-family:var(--sans); font-size:11px; font-weight:600;
       letter-spacing:0.22em; text-transform:uppercase;
-      color:var(--muted); position:relative; padding-bottom:2px;
+      color:var(--text); position:relative; padding-bottom:2px;
       transition:color 0.2s;
     }}
     .nav-link:hover {{ color:var(--text); }}
@@ -332,9 +333,9 @@ html_out = f"""<!DOCTYPE html>
 
     /* Section label */
     .section-label {{
-      font-family:var(--sans); font-size:9px; font-weight:400;
-      letter-spacing:0.44em; text-transform:uppercase;
-      color:var(--muted);
+      font-family:var(--sans); font-size:11px; font-weight:600;
+      letter-spacing:0.38em; text-transform:uppercase;
+      color:var(--text);
       margin-bottom:28px;
       padding-bottom:14px;
       border-bottom:1px solid var(--border);
@@ -588,6 +589,16 @@ html_out = f"""<!DOCTYPE html>
     }}
     .footer-social a:hover {{ opacity:0.78; }}
     .footer-social svg {{ display:block; }}
+    .imdb-badge {{
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:12px; font-weight:800;
+      color:var(--text);
+      background:rgba(17,17,16,0.1);
+      border-radius:3px;
+      padding:2px 5px;
+      letter-spacing:0.02em;
+      line-height:1;
+    }}
 
     /* ── RESPONSIVE ─────────────────────────────────────── */
     @media (max-width:1100px) {{
@@ -725,12 +736,7 @@ html_out = f"""<!DOCTYPE html>
         <circle cx="4" cy="4" r="2"/>
       </svg>
     </a>
-    <a href="https://www.imdb.com/name/nm0484108/" target="_blank" aria-label="IMDb">
-      <svg width="36" height="20" viewBox="0 0 36 20" fill="currentColor">
-        <rect width="36" height="20" rx="3" fill="currentColor" opacity="0.12"/>
-        <text x="4" y="15" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="currentColor" letter-spacing="0.5">IMDb</text>
-      </svg>
-    </a>
+    <a href="https://www.imdb.com/name/nm0484108/" target="_blank" aria-label="IMDb" class="imdb-badge">IMDb</a>
   </div>
   <div>&copy; 2025 Andrew Lancaster &nbsp;&middot;&nbsp; Director &amp; Composer &nbsp;&middot;&nbsp; London / Sydney</div>
 </footer>
@@ -765,7 +771,14 @@ html_out = f"""<!DOCTYPE html>
   function openVideo(id, title) {{
     var wrap  = document.getElementById('lb-video');
     var modal = document.getElementById('lightbox');
-    wrap.innerHTML = '<iframe src="https://player.vimeo.com/video/' + id + '?autoplay=1&color=ffffff&title=0&byline=0&portrait=0&dnt=1" allow="autoplay; fullscreen" allowfullscreen></iframe>';
+    var src;
+    if (id.startsWith('yt_')) {{
+      var ytId = id.slice(3);
+      src = 'https://www.youtube.com/embed/' + ytId + '?autoplay=1&rel=0';
+    }} else {{
+      src = 'https://player.vimeo.com/video/' + id + '?autoplay=1&color=ffffff&title=0&byline=0&portrait=0&dnt=1';
+    }}
+    wrap.innerHTML = '<iframe src="' + src + '" allow="autoplay; fullscreen" allowfullscreen></iframe>';
     document.getElementById('lb-title').textContent = title || '';
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
