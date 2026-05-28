@@ -355,9 +355,9 @@ html_out = f"""<!DOCTYPE html>
       border-bottom:1px solid var(--border);
     }}
     .sub-tab {{
-      font-family:var(--sans); font-size:10px; font-weight:300;
+      font-family:var(--sans); font-size:10px; font-weight:400;
       letter-spacing:0.18em; text-transform:uppercase;
-      color:var(--muted); background:none; border:none;
+      color:#4a4845; background:none; border:none;
       cursor:pointer; padding:10px 20px 10px 0;
       margin-right:16px;
       border-bottom:1.5px solid transparent; margin-bottom:-1px;
