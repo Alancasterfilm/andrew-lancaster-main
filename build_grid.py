@@ -229,10 +229,10 @@ html_out = f"""<!DOCTYPE html>
     :root {{
       --serif: 'Cormorant Garamond', Georgia, serif;
       --sans:  'Jost', system-ui, sans-serif;
-      --bg:    #f0ede8;
-      --text:  #1a1a18;
-      --muted: #8a8680;
-      --border:rgba(26,26,24,0.1);
+      --bg:    #e8e4de;
+      --text:  #111110;
+      --muted: #5c5854;
+      --border:rgba(17,17,16,0.14);
     }}
 
     html {{ scroll-behavior:smooth; }}
