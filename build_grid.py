@@ -186,7 +186,7 @@ CONTACT_HTML = """
     <div class="contact-col">
       <div class="section-label">Get in Touch</div>
       <form class="contact-form" id="contact-form"
-            action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            action="https://formspree.io/f/xqejnpro" method="POST">
         <div class="form-group">
           <label class="form-label" for="cf-name">Name</label>
           <input class="form-input" id="cf-name" type="text" name="name" placeholder="Your name" required/>
