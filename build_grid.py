@@ -128,6 +128,15 @@ ABOUT_HTML = """
     <p class="bio-p">Andrew graduated from AFTRS in 1994 where he directed and composed <em>Palace Cafe</em> and <em>Universal Appliance Co.</em>, between them winning fifteen awards worldwide. In 2001 his short film <em>In Search of Mike</em> had its World Premiere at Sundance, winning the Dendy Award and the prestigious Rouben Mamoulian Award at the Sydney Film Festival. In 2002 he received the Best Rising Talent award at the IF Awards.</p>
     <p class="bio-p">In 2010 he founded Sonar Music and joined Photoplay Films as a commercial director. He won the 2012 AACTA Award for Best Original Music for <em>The Hunter</em> (with Willem Dafoe). He has also won two ARIA Awards for Best Australian Music Video.</p>
 
+    <div class="about-photos">
+      <div class="about-photo-portrait">
+        <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606588805909-FIC67GFJ0Y56RO5M2E0D/image.jpg?format=1000w" alt="Andrew Lancaster"/>
+      </div>
+      <div class="about-photo-bts">
+        <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606603670745-LHSID7JGZVMZP215UZ2P/87374465_10158458341155934_7221489858953347072_n.jpg?format=1500w" alt="Andrew Lancaster on set"/>
+      </div>
+    </div>
+
     <div class="awards-heading">Selected Awards</div>
     <div class="awards-cols">
       <div>
@@ -149,6 +158,9 @@ ABOUT_HTML = """
 """
 
 CONTACT_HTML = """
+  <div class="contact-photo-wrap">
+    <img class="contact-photo" src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606588575422-BK9HUCQN3XGBW2WLBRXY/image-asset.jpeg?format=1500w" alt="Andrew Lancaster"/>
+  </div>
   <div class="contact-layout">
 
     <!-- Representation column -->
@@ -432,6 +444,33 @@ html_out = f"""<!DOCTYPE html>
       line-height:2; color:var(--muted);
       margin-bottom:16px; letter-spacing:0.02em;
     }}
+    /* ── ABOUT PHOTOS ───────────────────────────────────── */
+    .about-photos {{
+      display:grid;
+      grid-template-columns:2fr 3fr;
+      gap:3px;
+      margin:44px 0 52px;
+      height:420px;
+    }}
+    .about-photo-portrait,
+    .about-photo-bts {{ overflow:hidden; }}
+    .about-photo-portrait img,
+    .about-photo-bts img {{
+      width:100%; height:100%;
+      object-fit:cover;
+      display:block;
+      transition:transform 0.6s cubic-bezier(.25,.46,.45,.94);
+    }}
+    .about-photo-portrait {{ object-position:center top; }}
+    .about-photo-portrait img {{ object-position:center 10%; }}
+    .about-photo-bts img {{ object-position:center center; }}
+    .about-photos:hover img {{ transform:scale(1.02); }}
+    @media (max-width:700px) {{
+      .about-photos {{ grid-template-columns:1fr; height:auto; }}
+      .about-photo-portrait,
+      .about-photo-bts {{ height:280px; }}
+    }}
+
     .awards-heading {{
       font-family:var(--sans); font-size:9px; font-weight:400;
       letter-spacing:0.44em; text-transform:uppercase;
@@ -489,6 +528,17 @@ html_out = f"""<!DOCTYPE html>
       color:var(--muted); transition:color 0.2s;
     }}
     .social-link:hover {{ color:var(--text); }}
+
+    /* ── CONTACT PHOTO ──────────────────────────────────── */
+    .contact-photo-wrap {{
+      margin-bottom:32px;
+    }}
+    .contact-photo {{
+      width:120px; height:120px;
+      object-fit:cover; object-position:center 15%;
+      display:block;
+      border-radius:50%;
+    }}
 
     /* ── CONTACT LAYOUT ────────────────────────────────── */
     .contact-layout {{
