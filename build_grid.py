@@ -759,6 +759,7 @@ html_out = f"""<!DOCTYPE html>
 
 # Write to all locations
 for path in [
+    '/sessions/trusting-lucid-cori/mnt/andrew-lancaster-main/index.html',
     '/sessions/trusting-lucid-cori/mnt/Projects/Andrew Lancaster Portfolio/index.html',
     '/sessions/trusting-lucid-cori/mnt/Long form website Directing/index.html',
     '/sessions/trusting-lucid-cori/mnt/outputs/andrew-lancaster-portfolio.html'
