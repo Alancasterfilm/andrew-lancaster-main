@@ -292,6 +292,33 @@ html_out = f"""<!DOCTYPE html>
       background:var(--text);
     }}
 
+    /* ── DIRECTOR DROPDOWN ──────────────────────────────── */
+    .nav-item {{ position:relative; }}
+    .nav-dropdown {{
+      position:absolute; top:calc(100% + 18px); left:-18px;
+      background:var(--bg);
+      border:1px solid var(--border);
+      min-width:210px;
+      display:none; flex-direction:column;
+      z-index:200;
+      padding:8px 0;
+      box-shadow:0 8px 24px rgba(0,0,0,0.07);
+    }}
+    .nav-item:hover .nav-dropdown {{ display:flex; }}
+    .nav-dropdown-item {{
+      font-family:var(--sans); font-size:9.5px; font-weight:600;
+      letter-spacing:0.2em; text-transform:uppercase;
+      color:var(--text);
+      padding:10px 20px;
+      cursor:pointer;
+      border:none; background:none; text-align:left; width:100%;
+      transition:color 0.18s, background 0.18s;
+    }}
+    .nav-dropdown-item:hover {{
+      color:var(--text);
+      background:rgba(17,17,16,0.04);
+    }}
+
     /* ── SECTIONS ───────────────────────────────────────── */
     .page-section {{ display:none; padding:40px 48px 80px; }}
     .page-section.active {{ display:block; }}
@@ -355,9 +382,9 @@ html_out = f"""<!DOCTYPE html>
       border-bottom:1px solid var(--border);
     }}
     .sub-tab {{
-      font-family:var(--sans); font-size:10px; font-weight:400;
+      font-family:var(--sans); font-size:10px; font-weight:600;
       letter-spacing:0.18em; text-transform:uppercase;
-      color:#4a4845; background:none; border:none;
+      color:var(--text); background:none; border:none;
       cursor:pointer; padding:10px 20px 10px 0;
       margin-right:16px;
       border-bottom:1.5px solid transparent; margin-bottom:-1px;
@@ -581,7 +608,17 @@ html_out = f"""<!DOCTYPE html>
   </div>
   <nav>
     <a href="#" class="nav-link active" id="nav-featured" onclick="showSection('featured',this);return false;">Featured</a>
-    <a href="#" class="nav-link" id="nav-director"  onclick="showSection('director',this);return false;">Director</a>
+    <div class="nav-item">
+      <a href="#" class="nav-link" id="nav-director" onclick="showSection('director',this);showSub('feature-drama',document.querySelector('#section-director .sub-tab'));return false;">Director</a>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-item" onclick="showSection('director',document.getElementById('nav-director'));showSub('feature-drama',document.querySelector('#section-director .sub-tab:nth-child(1)'))">Feature Drama</button>
+        <button class="nav-dropdown-item" onclick="showSection('director',document.getElementById('nav-director'));showSub('feature-doc',document.querySelector('#section-director .sub-tab:nth-child(2)'))">Feature Documentary</button>
+        <button class="nav-dropdown-item" onclick="showSection('director',document.getElementById('nav-director'));showSub('tvc',document.querySelector('#section-director .sub-tab:nth-child(3)'))">TVC</button>
+        <button class="nav-dropdown-item" onclick="showSection('director',document.getElementById('nav-director'));showSub('music-promo',document.querySelector('#section-director .sub-tab:nth-child(4)'))">Music Promo</button>
+        <button class="nav-dropdown-item" onclick="showSection('director',document.getElementById('nav-director'));showSub('short-film',document.querySelector('#section-director .sub-tab:nth-child(5)'))">Short Film</button>
+        <button class="nav-dropdown-item" onclick="showSection('director',document.getElementById('nav-director'));showSub('short-doc',document.querySelector('#section-director .sub-tab:nth-child(6)'))">Short Documentary</button>
+      </div>
+    </div>
     <a href="#" class="nav-link" id="nav-composer"  onclick="showSection('composer',this);return false;">Composer</a>
     <a href="#" class="nav-link" id="nav-about"     onclick="showSection('about',this);return false;">About</a>
     <a href="#" class="nav-link" id="nav-contact"   onclick="showSection('contact',this);return false;">Contact</a>
@@ -697,10 +734,14 @@ html_out = f"""<!DOCTYPE html>
   }}
 
   function showSub(name, el) {{
-    var sec = el.closest('.page-section');
+    var sec = document.getElementById('section-director');
     sec.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
     sec.querySelectorAll('.sub-section').forEach(s => s.classList.remove('active'));
-    el.classList.add('active');
+    // find the matching sub-tab by text if el not provided or wrong
+    var tab = el && el.classList && el.classList.contains('sub-tab') ? el :
+              Array.from(sec.querySelectorAll('.sub-tab')).find(t =>
+                t.textContent.toLowerCase().replace(/\s+/g,'-').includes(name.split('-')[0]));
+    if (tab) tab.classList.add('active');
     var sub = document.getElementById('sub-' + name);
     if (sub) sub.classList.add('active');
   }}
