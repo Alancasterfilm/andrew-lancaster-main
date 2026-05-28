@@ -162,6 +162,15 @@
       transition:color 0.2s;
     }
     .vid-card:hover .vid-cap { color:var(--text); }
+    .vid-link {
+      display:inline-block; margin-top:6px;
+      font-family:var(--sans); font-size:10px; font-weight:400;
+      letter-spacing:0.12em; text-transform:lowercase;
+      color:var(--muted);
+      border-bottom:1px solid var(--border);
+      transition:color 0.2s, border-color 0.2s;
+    }
+    .vid-link:hover { color:var(--text); border-color:var(--text); }
 
     /* ── DIRECTOR SUB-TABS ──────────────────────────────── */
     .sub-tabs {
@@ -601,6 +610,7 @@
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">Feature Documentary // The Lost Aviator &mdash; Trailer</div>
+      <a class="vid-link" href="https://www.thelostaviator.com" target="_blank" onclick="event.stopPropagation()">thelostaviator.com</a>
     </div></div>
   </div>
   <div class="sub-section" id="sub-tvc">

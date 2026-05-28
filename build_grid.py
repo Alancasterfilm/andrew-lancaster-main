@@ -35,7 +35,7 @@ feat_doc = [
   ("1049333416","The Art of Sound Ep1 Preview",  BASE+"1751479495985-ODIQAYI43AJFKICBZ70M/image-asset.jpeg?format=750w","The Art of Sound &mdash; Ep1 Preview"),
   ("240644524", "Joud — Trailer",                BASE+"1606418566093-UJ8T5ZUKPZWVUPK2AG57/image-asset.png?format=750w", "Feature Documentary // Joud &mdash; Trailer"),
   ("221910650", "Joud Traces — Excerpt",         BASE+"1606416276346-EN45PBCY9EOG5568AYS0/image-asset.png?format=750w", "Feature Doc // Joud &lsquo;Traces&rsquo; &mdash; Excerpt"),
-  ("42719324",  "The Lost Aviator — Trailer",    BASE+"1606590298323-N1GCQPUQ6M6BO19EP5ID/image-asset.png?format=750w", "Feature Documentary // The Lost Aviator &mdash; Trailer"),
+  ("42719324",  "The Lost Aviator — Trailer",    BASE+"1606590298323-N1GCQPUQ6M6BO19EP5ID/image-asset.png?format=750w", "Feature Documentary // The Lost Aviator &mdash; Trailer", "https://www.thelostaviator.com"),
 ]
 
 tvc = [
@@ -103,14 +103,17 @@ print("Featured:", len(featured), "| Feat drama:", len(feat_drama),
 # ── Render a grid of video cards ─────────────────────────────────────────────
 def grid(items):
     parts = []
-    for vid_id, title, thumb, cap in items:
+    for row in items:
+        vid_id, title, thumb, cap = row[0], row[1], row[2], row[3]
+        link = row[4] if len(row) > 4 else None
+        link_html = f'\n      <a class="vid-link" href="{link}" target="_blank" onclick="event.stopPropagation()">{link.replace("https://www.","").replace("https://","")}</a>' if link else ''
         parts.append(f'''\
     <div class="vid-card" onclick="openVideo('{vid_id}','{title.replace("'","&#39;")}')">
       <div class="vid-thumb">
         <img src="{thumb}" loading="lazy" alt="{title}"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
-      <div class="vid-cap">{cap}</div>
+      <div class="vid-cap">{cap}</div>{link_html}
     </div>''')
     return '\n'.join(parts)
 
@@ -378,6 +381,15 @@ html_out = f"""<!DOCTYPE html>
       transition:color 0.2s;
     }}
     .vid-card:hover .vid-cap {{ color:var(--text); }}
+    .vid-link {{
+      display:inline-block; margin-top:6px;
+      font-family:var(--sans); font-size:10px; font-weight:400;
+      letter-spacing:0.12em; text-transform:lowercase;
+      color:var(--muted);
+      border-bottom:1px solid var(--border);
+      transition:color 0.2s, border-color 0.2s;
+    }}
+    .vid-link:hover {{ color:var(--text); border-color:var(--text); }}
 
     /* ── DIRECTOR SUB-TABS ──────────────────────────────── */
     .sub-tabs {{
