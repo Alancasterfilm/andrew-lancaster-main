@@ -1,0 +1,769 @@
+#!/usr/bin/env python3
+"""Rebuild grid layout — andrewlancaster.net style, smaller thumbnails"""
+
+BASE = "https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/"
+LOGO = "https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606580030735-YUD75KZCKUF3UHXXB1QQ/Andrew+Lancaster-logo.png?format=1000w"
+
+# ── Hardcoded video data ──────────────────────────────────────────────────────
+featured = [
+  ("1049333416","The Art of Sound — Ep1 Preview",      BASE+"1751479495985-ODIQAYI43AJFKICBZ70M/image-asset.jpeg?format=750w", "The Art of Sound &mdash; Ep1 Preview"),
+  ("32698346",  "Accidents Happen — Teaser w Geena Davis", BASE+"1606416849555-NEDPYYTUJP7HI0A9OGJL/image-asset.png?format=750w",  "Feature Film // Accidents Happen &mdash; Teaser w Geena Davis"),
+  ("240644524", "Joud — Trailer",                      BASE+"1606418566093-UJ8T5ZUKPZWVUPK2AG57/image-asset.png?format=750w",  "Feature Documentary // Joud &mdash; Trailer"),
+  ("42719324",  "The Lost Aviator — Trailer",          BASE+"1606349843308-94F2ZJPHXDUKIDT9AGS1/image-asset.png?format=750w",  "Feature Documentary // The Lost Aviator &mdash; Trailer"),
+  ("281776426", "Director Reel — Choreography",        BASE+"1606396488583-Q193PGDDB004QI2C7TC1/image-asset.jpeg?format=750w", "Director Reel // Choreography"),
+  ("586699430", "What You See is What You Get",        BASE+"1629111769456-RN5QA1BO1L324Q8OUNWC/image-asset.png?format=750w",  "What You See is What You Get &mdash; The Magnetic Heads"),
+  ("399009463", "Custard — Funky Again",               BASE+"1606418924380-DKAURC64QEKAO77HBL21/image-asset.jpeg?format=750w", "Music Promo // Custard &mdash; Funky Again"),
+  ("730006443", "UNITY — Open Works",                  BASE+"1658323180612-FOKVWSUL7FH8T43VUGKJ/image-asset.jpeg?format=750w", "UNITY &mdash; Open Works"),
+  ("541765854", "Showtime Trailer",                    BASE+"1684147602018-QH9GYAZ1NQ9I0RJX7Q2X/image-asset.jpeg?format=750w", "Showtime Trailer 60&rsquo;"),
+  ("468058737", "Magnetic Heads — The Street",         BASE+"1606346570806-FQVPCB5VGNYXMLPHGKDF/image-asset.png?format=750w",  "Music Promo // Magnetic Heads &mdash; &lsquo;The Street&rsquo;"),
+  ("32396132",  "Jagwar Ma — Come Save Me",            BASE+"1606419621293-5Z3L5MD82Q1WLEH3XAOG/image-asset.png?format=750w",  "Music Promo // Jagwar Ma &mdash; &lsquo;Come Save Me&rsquo;"),
+  ("109362467", "Rexona — Adam Goodes",                BASE+"1606347117084-Q8E1FJXT1J3AGA6MOK55/image-asset.png?format=750w",  "TVC // Rexona &lsquo;Adam Goodes&rsquo; // Photoplay Films"),
+  ("415932947", "The Wednesday Night — The Perfect Scene", BASE+"1606348639375-BV61NYMW9XSCLPSJT4DN/image-asset.png?format=750w","Music Promo // The Wednesday Night &mdash; &lsquo;The Perfect Scene&rsquo;"),
+  ("15620506",  "Levis Curve ID",                      BASE+"1606348813412-5Y2AVQJ3D151MDPRXGWY/image-asset.png?format=750w",  "TVC // Levi&rsquo;s &lsquo;Curve ID&rsquo; // Photoplay Films"),
+  ("224294171", "Womens Cricket World Cup",             BASE+"1606412084026-M7SRS9OLVGGLAN2KQUDX/image-asset.png?format=750w",  "TVC // Women&rsquo;s Cricket World Cup // Chrome"),
+  ("483824019", "TVC Zariot",                          BASE+"1606395248765-RPUCBV7WYB3J1N2J7QQ1/image-asset.png?format=750w",  "TVC // Zariot"),
+  ("224451684", "Krugerrand Legacy",                   BASE+"1607079499466-XWJQ14L4QTUL3RQWSUHG/image-asset.png?format=750w",  "TVC // Krugerrand &lsquo;Legacy&rsquo;"),
+  ("32697871",  "RTA Speed Kills",                     BASE+"1606431977928-W1362KWVA1ZNABY71BU5/image-asset.png?format=750w",  "TVC // Road &amp; Traffic Authority &mdash; Speed Kills"),
+]
+
+feat_drama = [
+  ("38620802", "Accidents Happen — Trailer w Geena Davis", BASE+"1606428511318-I362HGFORP4UVWM6M4NB/image-asset.png?format=750w", "Feature Film // Accidents Happen w Geena Davis &mdash; Trailer"),
+  ("32698346", "Accidents Happen — Teaser w Geena Davis",  BASE+"1606416849555-NEDPYYTUJP7HI0A9OGJL/image-asset.png?format=750w", "Feature Film // Accidents Happen &mdash; Teaser w Geena Davis"),
+]
+
+feat_doc = [
+  ("1049333416","The Art of Sound Ep1 Preview",  BASE+"1751479495985-ODIQAYI43AJFKICBZ70M/image-asset.jpeg?format=750w","The Art of Sound &mdash; Ep1 Preview"),
+  ("240644524", "Joud — Trailer",                BASE+"1606418566093-UJ8T5ZUKPZWVUPK2AG57/image-asset.png?format=750w", "Feature Documentary // Joud &mdash; Trailer"),
+  ("221910650", "Joud Traces — Excerpt",         BASE+"1606416276346-EN45PBCY9EOG5568AYS0/image-asset.png?format=750w", "Feature Doc // Joud &lsquo;Traces&rsquo; &mdash; Excerpt"),
+  ("42719324",  "The Lost Aviator — Trailer",    BASE+"1606590298323-N1GCQPUQ6M6BO19EP5ID/image-asset.png?format=750w", "Feature Documentary // The Lost Aviator &mdash; Trailer"),
+]
+
+tvc = [
+  ("26713716",  "TVC Flickerfest",          BASE+"1606598059683-MTA2FU348M4GE96JBAVH/image-asset.png?format=750w",  "TVC // Flickerfest"),
+  ("15620506",  "Levis Curve ID",           BASE+"1606348813412-5Y2AVQJ3D151MDPRXGWY/image-asset.png?format=750w",  "TVC // Levi&rsquo;s &lsquo;Curve ID&rsquo; // Photoplay Films"),
+  ("109362467", "Rexona Adam Goodes",       BASE+"1606347117084-Q8E1FJXT1J3AGA6MOK55/image-asset.png?format=750w",  "TVC // Rexona &lsquo;Adam Goodes&rsquo; // Photoplay Films"),
+  ("366543772", "TUI Tours Cape Town",      BASE+"1606597577401-JT1EYKWSVMYS6D75DX3O/image-asset.png?format=750w",  "TVC // TUI Tours Cape Town // Chrome Productions"),
+  ("224294171", "Womens Cricket World Cup", BASE+"1606412084026-M7SRS9OLVGGLAN2KQUDX/image-asset.png?format=750w",  "TVC // Women&rsquo;s Cricket World Cup // Chrome"),
+  ("483824019", "Zariot",                   BASE+"1606395248765-RPUCBV7WYB3J1N2J7QQ1/image-asset.png?format=750w",  "TVC // Zariot"),
+  ("224451684", "Krugerrand Legacy",        BASE+"1606431518582-V6H498VOA7VEW0WA0RRX/image-asset.png?format=750w",  "TVC // Krugerrand &lsquo;Legacy&rsquo;"),
+  ("279817902", "Sothebys Mark Hix",        BASE+"1606418170004-CETXQHPJTL8Y3CUQC4XW/image-asset.jpeg?format=750w", "Sotheby&rsquo;s &mdash; Mark Hix Contemporary Art"),
+  ("96550861",  "Vicks Vapour Fresh Fish",  BASE+"1606598366431-856K1KP1T0S4A1WBUELI/image-asset.png?format=750w",  "TVC // Vicks Vapour &lsquo;Fresh Fish&rsquo; // Photoplay Films"),
+  ("32697871",  "RTA Speed Kills",          BASE+"1606431977928-W1362KWVA1ZNABY71BU5/image-asset.png?format=750w",  "TVC // Road &amp; Traffic Authority &mdash; Speed Kills"),
+  ("904407016", "Inshallah a Boy",          BASE+"1743770259233-90RNDCC1UY0514WD8YCO/image-asset.jpeg?format=750w", "Inshallah a Boy"),
+  ("697079907", "LEGO Technic Hack the Pullback", BASE+"1653209616906-EXL03JJGILTK8VWASBLP/image-asset.jpeg?format=750w", "LEGO Technic &mdash; Hack the Pullback"),
+  ("560298901", "McCafe",                   BASE+"1653219034992-XPBM0DLQJ7TBDCIQNTOV/image-asset.jpeg?format=750w", "McCafe"),
+  ("310775389", "Ladylucks TVC",            BASE+"1606581701295-D2GC63LGKC9NR1A9SR0C/image-asset.png?format=750w",  "TVC // Ladylucks"),
+]
+
+music_promo = [
+  ("1046412592","Heart Attacks — Custard",          BASE+"1736776535459-N079HM8BNUQQVVM7PJA2/image-asset.jpeg?format=750w","Heart Attacks &mdash; Custard"),
+  ("1046415351","Someday — Custard",                BASE+"1736776413525-IHVX5XSENVLYUCUZJWIM/image-asset.jpeg?format=750w","Someday &mdash; Custard"),
+  ("735825176", "The Bay Fire — Jackson Milas",     BASE+"1684147826363-20SJ88NJGC66E3OUVLP0/image-asset.jpeg?format=750w","The Bay Fire &mdash; Jackson Milas"),
+  ("586699430", "What You See is What You Get",     BASE+"1629111769456-RN5QA1BO1L324Q8OUNWC/image-asset.png?format=750w", "What You See is What You Get &mdash; The Magnetic Heads"),
+  ("399009463", "Custard — Funky Again",            BASE+"1606418924380-DKAURC64QEKAO77HBL21/image-asset.jpeg?format=750w","Music Promo // Custard &mdash; Funky Again"),
+  ("468058737", "Magnetic Heads — The Street",      BASE+"1606346570806-FQVPCB5VGNYXMLPHGKDF/image-asset.png?format=750w", "Music Promo // Magnetic Heads &mdash; &lsquo;The Street&rsquo;"),
+  ("32396132",  "Jagwar Ma — Come Save Me",         BASE+"1607023812134-DE665E9UFIB6TCPJVP5N/image-asset.png?format=750w", "Music Promo // Jagwar Ma &mdash; &lsquo;Come Save Me&rsquo;"),
+  ("415932947", "The Wednesday Night",              BASE+"1607073703198-5Y5K7LTJTGILENZ9YXYO/image-asset.png?format=750w", "Music Promo // The Wednesday Night &mdash; &lsquo;The Perfect Scene&rsquo;"),
+  ("730006443", "UNITY — Open Works",               BASE+"1658323180612-FOKVWSUL7FH8T43VUGKJ/image-asset.jpeg?format=750w","UNITY &mdash; Open Works"),
+  ("697083199", "The Desert Said Dance",            BASE+"1653218916284-YU74OX4NYW8N3CEKLI14/image-asset.jpeg?format=750w","The Desert Said Dance &mdash; Official Trailer"),
+  ("281776426", "Director Reel — Choreography",     BASE+"1606396488583-Q193PGDDB004QI2C7TC1/image-asset.jpeg?format=750w","Director Reel // Choreography"),
+]
+
+short_film = [
+  ("26712723",  "Universal Appliance Co",           BASE+"1606594990026-C6HG3L6GM7PZEY8JRMKC/image-asset.png?format=750w", "Short Film // Universal Appliance Co &mdash; AFI Best Sound"),
+  ("26713355",  "Palace Cafe",                      BASE+"1606594351740-M2T2DGEFBC1IXWJUOC8A/image-asset.png?format=750w", "Short Film // Palace Cafe &mdash; Gold Plaque Chicago"),
+  ("26711610",  "In Search of Mike",                BASE+"1606594151540-2AZQZBL6SASYJESGYJRW/image-asset.png?format=750w", "Short Film // In Search of Mike &mdash; Sundance / Dendy Award"),
+  ("473934153", "I Am You Feature Film Trailer",    BASE+"1606595749827-DX78DEMFMKD9AUGGGMES/image-asset.png?format=750w", "I Am You &mdash; Feature Film Trailer"),
+]
+
+short_doc = [
+  ("228356286", "Save Soho Pasquale",               BASE+"1606599080799-YK6P4SHKA07FOUKV17K8/image-asset.png?format=750w", "Save Soho &mdash; Pasquale"),
+  ("57031222",  "Sonya Ryan Australian of the Year",BASE+"1606599646295-PO36TJ3G97EQRHI43TN4/image-asset.png?format=750w", "Sonya Ryan &mdash; Australian of the Year"),
+  ("32698036",  "Town of Speed Gabby",              BASE+"1606599286373-4B6S1HRIKTYVF3TU4JO3/image-asset.png?format=750w", "Town of Speed &mdash; Gabby"),
+  ("541765854", "Showtime Trailer",                 BASE+"1606600095010-EPIR4A82RZIL7N0OB0NC/image-asset.png?format=750w", "Showtime Trailer 60&rsquo;"),
+]
+
+composer = [
+  ("904407016", "Inshallah a Boy",                  BASE+"1743770259233-90RNDCC1UY0514WD8YCO/image-asset.jpeg?format=750w", "Composer // Inshallah a Boy"),
+  ("697079907", "LEGO Technic Hack the Pullback",   BASE+"1653209616906-EXL03JJGILTK8VWASBLP/image-asset.jpeg?format=750w","Composer // LEGO Technic &mdash; Hack the Pullback"),
+  ("473934153", "I Am You Feature Film Trailer",    BASE+"1606582505487-9SRVC3X5JW8S2A0O7BQC/image-asset.png?format=750w", "Composer // I Am You &mdash; Feature Film Trailer"),
+  ("560298901", "McCafe",                           BASE+"1653219034992-XPBM0DLQJ7TBDCIQNTOV/image-asset.jpeg?format=750w","Composer // McCafe"),
+  ("310775389", "Ladylucks TVC",                    BASE+"1606581701295-D2GC63LGKC9NR1A9SR0C/image-asset.png?format=750w", "Composer // Ladylucks TVC"),
+  ("313288829", "Ferrari Race to Immortality",      BASE+"1606581634563-SMEDYEEC41MEUDGA2XFO/image-asset.png?format=750w", "Composer // Ferrari: Race to Immortality &mdash; Feature Doc"),
+  ("696644674", "Ahmad Tea",                        BASE+"1653218981746-6VHPG94ZH3SXRVLNK5D2/image-asset.jpeg?format=750w","Composer // Ahmad Tea"),
+  ("696650280", "Melbourne New Year Drone",         BASE+"1653218696308-ES8KDT0Q78Q9KL5RTZB0/image-asset.jpeg?format=750w","Composer // Melbourne New Year Drone"),
+  ("483824019", "Zariot",                           BASE+"1606395248765-RPUCBV7WYB3J1N2J7QQ1/image-asset.png?format=750w", "Composer // Zariot"),
+]
+
+print("Featured:", len(featured), "| Feat drama:", len(feat_drama),
+      "| Feat doc:", len(feat_doc), "| TVC:", len(tvc),
+      "| Music:", len(music_promo), "| Short film:", len(short_film),
+      "| Short doc:", len(short_doc), "| Composer:", len(composer))
+
+# ── Render a grid of video cards ─────────────────────────────────────────────
+def grid(items):
+    parts = []
+    for vid_id, title, thumb, cap in items:
+        parts.append(f'''\
+    <div class="vid-card" onclick="openVideo('{vid_id}','{title.replace("'","&#39;")}')">
+      <div class="vid-thumb">
+        <img src="{thumb}" loading="lazy" alt="{title}"/>
+        <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+      </div>
+      <div class="vid-cap">{cap}</div>
+    </div>''')
+    return '\n'.join(parts)
+
+# ── About and Contact HTML ────────────────────────────────────────────────────
+ABOUT_HTML = """
+  <div class="section-label">Biography</div>
+  <div class="text-body">
+    <p class="bio-intro">Andrew Lancaster is a multiple award-winning Australian director and composer based in London and Sydney.</p>
+    <p class="bio-p">His unique directing style combines cinematic vision and natural performances with a strong emphasis on music, sound, choreography and rhythm.</p>
+    <p class="bio-p">Andrew&rsquo;s debut feature <em>Accidents Happen</em> (starring Geena Davis) premiered at Tribeca Film Festival 2009, winning awards at Giffoni Italy, Sitges Spain, and the Netherlands. His second feature <em>The Lost Aviator</em> premiered at the BFI London Film Festival and Miami IFF, with a Special Jury Mention at the Sydney Film Festival. His feature documentary <em>Joud</em> &mdash; a cinematic journey through Arabia &mdash; was released in 2019 with a live score performed by the London Contemporary Orchestra.</p>
+    <p class="bio-p">Andrew graduated from AFTRS in 1994 where he directed and composed <em>Palace Cafe</em> and <em>Universal Appliance Co.</em>, between them winning fifteen awards worldwide. In 2001 his short film <em>In Search of Mike</em> had its World Premiere at Sundance, winning the Dendy Award and the prestigious Rouben Mamoulian Award at the Sydney Film Festival. In 2002 he received the Best Rising Talent award at the IF Awards.</p>
+    <p class="bio-p">In 2010 he founded Sonar Music and joined Photoplay Films as a commercial director. He won the 2012 AACTA Award for Best Original Music for <em>The Hunter</em> (with Willem Dafoe). He has also won two ARIA Awards for Best Australian Music Video.</p>
+
+    <div class="awards-heading">Selected Awards</div>
+    <div class="awards-cols">
+      <div>
+        <div class="award-cat">Music &amp; Sound</div>
+        <div class="award-entry"><div class="award-film">The Hunter</div><div class="award-detail">AACTA Award &mdash; Best Original Score</div></div>
+        <div class="award-entry"><div class="award-film">Universal Appliance Co.</div><div class="award-detail">AFI Award &mdash; Best Sound in Non-feature Film<br>Golden Reel Award USA</div></div>
+        <div class="award-entry"><div class="award-film">ARIA Awards</div><div class="award-detail">Best Australian Video &mdash; Custard &lsquo;Girls Like That&rsquo;<br>Best Australian Video &mdash; You Am I &lsquo;Soldiers&rsquo;</div></div>
+        <div class="award-entry"><div class="award-film">Palace Cafe</div><div class="award-detail">Ampex Award for Audio Excellence<br>Best Soundtrack &mdash; Dakino Bucharest</div></div>
+      </div>
+      <div>
+        <div class="award-cat">Directing</div>
+        <div class="award-entry"><div class="award-film">Town of Speed &mdash; TVC</div><div class="award-detail">Gold &mdash; New York Festival Awards<br>2&times; Silver CLIOs &middot; 2&times; Gold ADMA<br>Gold &mdash; Spikes Asia</div></div>
+        <div class="award-entry"><div class="award-film">In Search of Mike</div><div class="award-detail">Rouben Mamoulian Award &mdash; Sydney Film Festival<br>Dendy Award &mdash; Sydney Film Festival<br>World Premiere &mdash; Sundance</div></div>
+        <div class="award-entry"><div class="award-film">Accidents Happen</div><div class="award-detail">Special Jury Award &mdash; Giffoni Film Festival<br>Silver Audience Award &mdash; Sydney Film Festival<br>Nominated Best Film &mdash; Sitges</div></div>
+        <div class="award-entry"><div class="award-film">Palace Cafe</div><div class="award-detail">Gold Plaque &mdash; Chicago International Film Festival<br>Dendy Award &mdash; Sydney Film Festival</div></div>
+      </div>
+    </div>
+  </div>
+"""
+
+CONTACT_HTML = """
+  <div class="contact-layout">
+
+    <!-- Representation column -->
+    <div class="contact-col">
+      <div class="section-label">Representation</div>
+      <div class="text-body contact-body">
+        <p class="contact-intro">Based in London &amp; Sydney. Available for feature film, documentary, commercial and music promo work worldwide.</p>
+        <div class="contact-item">
+          <div class="contact-label">Director &mdash; TVC</div>
+          <div class="contact-name">Wild Media</div>
+          <div class="contact-detail"><a href="https://www.wildmedia.com.au" target="_blank">wildmedia.com.au</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-label">Director &mdash; Long Form</div>
+          <div class="contact-name">Cameron Creswell Agency</div>
+          <div class="contact-detail">Needeya Islam<br><a href="mailto:needeya.islam@cameronsmanagement.com.au">needeya.islam@cameronsmanagement.com.au</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-label">Music</div>
+          <div class="contact-name">Sonar Music</div>
+          <div class="contact-detail">Sophie Haydon<br>
+            <a href="mailto:sophie@sonarmusic.com.au">sophie@sonarmusic.com.au</a> &nbsp;&middot;&nbsp;
+            <a href="https://www.sonarmusic.com.au" target="_blank">sonarmusic.com.au</a>
+          </div>
+        </div>
+        <div class="social-links">
+          <a class="social-link" href="https://www.imdb.com/name/nm0484108/" target="_blank">IMDb</a>
+          <a class="social-link" href="https://www.instagram.com/andrewlancaster/" target="_blank">Instagram</a>
+          <a class="social-link" href="https://www.linkedin.com/in/andrewlancasterdirector" target="_blank">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact form column -->
+    <!-- SETUP: go to formspree.io, create a free form pointing to your email, replace YOUR_FORM_ID below -->
+    <div class="contact-col">
+      <div class="section-label">Get in Touch</div>
+      <form class="contact-form" id="contact-form"
+            action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="form-group">
+          <label class="form-label" for="cf-name">Name</label>
+          <input class="form-input" id="cf-name" type="text" name="name" placeholder="Your name" required/>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="cf-email">Email</label>
+          <input class="form-input" id="cf-email" type="email" name="email" placeholder="your@email.com" required/>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="cf-subject">Subject</label>
+          <input class="form-input" id="cf-subject" type="text" name="subject" placeholder="Project enquiry, collaboration&hellip;"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="cf-message">Message</label>
+          <textarea class="form-input form-textarea" id="cf-message" name="message" placeholder="Tell me about your project&hellip;" required></textarea>
+        </div>
+        <button class="form-submit" type="submit">
+          <span class="form-submit-text">Send Message</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+        <div class="form-success" id="form-success">
+          Message sent &mdash; thank you. Andrew will be in touch shortly.
+        </div>
+      </form>
+    </div>
+
+  </div>
+"""
+
+# ── Build full HTML ───────────────────────────────────────────────────────────
+html_out = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Andrew Lancaster — Director &amp; Composer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&family=Josefin+Sans:wght@100;300;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after {{ margin:0; padding:0; box-sizing:border-box; }}
+
+    :root {{
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'Jost', system-ui, sans-serif;
+      --bg:    #f0ede8;
+      --text:  #1a1a18;
+      --muted: #8a8680;
+      --border:rgba(26,26,24,0.1);
+    }}
+
+    html {{ scroll-behavior:smooth; }}
+    body {{
+      background:var(--bg); color:var(--text);
+      font-family:var(--sans); font-size:13px; line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }}
+    a {{ color:inherit; text-decoration:none; }}
+    img {{ display:block; max-width:100%; }}
+
+    /* ── HEADER ─────────────────────────────────────────── */
+    header {{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:28px 48px 24px;
+      position:sticky; top:0; z-index:100;
+      background:var(--bg);
+      border-bottom:1px solid var(--border);
+    }}
+    .logo-block {{ display:flex; flex-direction:column; gap:0; }}
+    .logo-mark {{
+      display:flex; align-items:stretch; gap:11px;
+      text-decoration:none;
+    }}
+    .logo-bar {{
+      width:3px; background:var(--text);
+      flex-shrink:0;
+    }}
+    .logo-text {{
+      display:flex; flex-direction:column; justify-content:center; gap:2px;
+    }}
+    .logo-first, .logo-last {{
+      font-family:'Josefin Sans', var(--sans);
+      font-size:15px; font-weight:600;
+      letter-spacing:0.32em; text-transform:uppercase;
+      color:var(--text); line-height:1.15;
+    }}
+    .logo-sub {{
+      font-family:var(--sans); font-size:8px; font-weight:300;
+      letter-spacing:0.44em; text-transform:uppercase;
+      color:var(--muted); margin-top:7px; padding-left:14px;
+    }}
+    nav {{ display:flex; gap:28px; align-items:center; }}
+    .nav-link {{
+      font-family:var(--sans); font-size:11px; font-weight:400;
+      letter-spacing:0.22em; text-transform:uppercase;
+      color:var(--muted); position:relative; padding-bottom:2px;
+      transition:color 0.2s;
+    }}
+    .nav-link:hover {{ color:var(--text); }}
+    .nav-link.active {{ color:var(--text); }}
+    .nav-link.active::after {{
+      content:''; position:absolute;
+      bottom:0; left:0; right:0; height:1px;
+      background:var(--text);
+    }}
+
+    /* ── SECTIONS ───────────────────────────────────────── */
+    .page-section {{ display:none; padding:40px 48px 80px; }}
+    .page-section.active {{ display:block; }}
+
+    /* Section label */
+    .section-label {{
+      font-family:var(--sans); font-size:9px; font-weight:400;
+      letter-spacing:0.44em; text-transform:uppercase;
+      color:var(--muted);
+      margin-bottom:28px;
+      padding-bottom:14px;
+      border-bottom:1px solid var(--border);
+    }}
+
+    /* ── VIDEO GRID — 4 columns, smaller thumbnails ─────── */
+    .vid-grid {{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+    }}
+    .vid-card {{ cursor:pointer; }}
+    .vid-thumb {{
+      position:relative;
+      width:100%; aspect-ratio:16/9;
+      overflow:hidden;
+      background:#1a1a1a;
+    }}
+    .vid-thumb img {{
+      width:100%; height:100%; object-fit:cover;
+      opacity:0.82;
+      transition:opacity 0.4s, transform 0.55s cubic-bezier(.25,.46,.45,.94);
+    }}
+    .vid-card:hover .vid-thumb img {{ opacity:1; transform:scale(1.04); }}
+    .vid-play {{
+      position:absolute; inset:0;
+      display:flex; align-items:center; justify-content:center;
+      opacity:0; transition:opacity 0.28s;
+    }}
+    .vid-card:hover .vid-play {{ opacity:1; }}
+    .vid-play svg {{
+      width:36px; height:36px;
+      background:rgba(255,255,255,0.18);
+      border:1.5px solid rgba(255,255,255,0.75);
+      border-radius:50%;
+      fill:white;
+      padding:10px 10px 10px 12px;
+    }}
+    .vid-cap {{
+      margin-top:9px;
+      font-family:var(--sans); font-size:12.5px; font-weight:300;
+      letter-spacing:0.04em;
+      color:var(--muted); line-height:1.5;
+      transition:color 0.2s;
+    }}
+    .vid-card:hover .vid-cap {{ color:var(--text); }}
+
+    /* ── DIRECTOR SUB-TABS ──────────────────────────────── */
+    .sub-tabs {{
+      display:flex; gap:0; flex-wrap:wrap;
+      margin-bottom:28px;
+      border-bottom:1px solid var(--border);
+    }}
+    .sub-tab {{
+      font-family:var(--sans); font-size:10px; font-weight:300;
+      letter-spacing:0.18em; text-transform:uppercase;
+      color:var(--muted); background:none; border:none;
+      cursor:pointer; padding:10px 20px 10px 0;
+      margin-right:16px;
+      border-bottom:1.5px solid transparent; margin-bottom:-1px;
+      transition:color 0.2s, border-color 0.2s;
+    }}
+    .sub-tab:hover {{ color:var(--text); }}
+    .sub-tab.active {{ color:var(--text); border-bottom-color:var(--text); }}
+    .sub-section {{ display:none; }}
+    .sub-section.active {{ display:block; }}
+
+    /* ── COMPOSER intro ─────────────────────────────────── */
+    .composer-intro {{
+      font-family:var(--serif); font-size:clamp(17px,1.8vw,22px);
+      font-weight:300; font-style:italic; line-height:1.9;
+      color:var(--text); margin-bottom:36px; max-width:660px;
+    }}
+
+    /* ── TEXT SECTIONS ──────────────────────────────────── */
+    .text-body {{ max-width:860px; }}
+    .bio-intro {{
+      font-family:var(--serif);
+      font-size:clamp(18px,2vw,24px);
+      font-weight:300; font-style:italic; line-height:1.9;
+      color:var(--text); margin-bottom:28px;
+    }}
+    .bio-p {{
+      font-family:var(--sans); font-size:13px; font-weight:300;
+      line-height:2; color:var(--muted);
+      margin-bottom:16px; letter-spacing:0.02em;
+    }}
+    .awards-heading {{
+      font-family:var(--sans); font-size:9px; font-weight:400;
+      letter-spacing:0.44em; text-transform:uppercase;
+      color:var(--text);
+      margin:48px 0 20px;
+      padding-bottom:12px; border-bottom:1px solid var(--border);
+    }}
+    .awards-cols {{ display:grid; grid-template-columns:1fr 1fr; gap:36px 56px; }}
+    .award-cat {{
+      font-family:var(--sans); font-size:9px; font-weight:400;
+      letter-spacing:0.4em; text-transform:uppercase;
+      color:var(--muted); margin-bottom:18px;
+    }}
+    .award-entry {{ margin-bottom:18px; }}
+    .award-film {{
+      font-family:var(--sans); font-size:10.5px; font-weight:300;
+      letter-spacing:0.06em; color:var(--muted); margin-bottom:3px;
+    }}
+    .award-detail {{
+      font-family:var(--sans); font-size:12.5px; font-weight:300;
+      color:var(--text); line-height:1.75;
+    }}
+
+    .contact-body {{ max-width:560px; }}
+    .contact-intro {{
+      font-family:var(--serif); font-size:20px; font-weight:300;
+      font-style:italic; line-height:1.9;
+      color:var(--text); margin-bottom:36px;
+    }}
+    .contact-item {{ padding:16px 0; border-bottom:1px solid var(--border); }}
+    .contact-item:first-of-type {{ border-top:1px solid var(--border); }}
+    .contact-label {{
+      font-family:var(--sans); font-size:8.5px; font-weight:400;
+      letter-spacing:0.46em; text-transform:uppercase;
+      color:var(--muted); margin-bottom:6px;
+    }}
+    .contact-name {{
+      font-family:var(--sans); font-size:14px; font-weight:300;
+      color:var(--text); margin-bottom:4px;
+    }}
+    .contact-detail {{
+      font-family:var(--sans); font-size:12px; font-weight:300;
+      color:var(--muted); line-height:1.8;
+    }}
+    .contact-detail a {{ transition:color 0.2s; }}
+    .contact-detail a:hover {{ color:var(--text); }}
+    .social-links {{
+      display:flex; gap:24px;
+      margin-top:36px; padding-top:24px;
+      border-top:1px solid var(--border);
+    }}
+    .social-link {{
+      font-family:var(--sans); font-size:10px; font-weight:300;
+      letter-spacing:0.18em; text-transform:uppercase;
+      color:var(--muted); transition:color 0.2s;
+    }}
+    .social-link:hover {{ color:var(--text); }}
+
+    /* ── CONTACT LAYOUT ────────────────────────────────── */
+    .contact-layout {{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:64px;
+      max-width:1100px;
+    }}
+    .contact-col {{ display:flex; flex-direction:column; }}
+
+    /* ── CONTACT FORM ───────────────────────────────────── */
+    .contact-form {{ display:flex; flex-direction:column; gap:20px; }}
+    .form-group {{ display:flex; flex-direction:column; gap:7px; }}
+    .form-label {{
+      font-family:var(--sans); font-size:8.5px; font-weight:400;
+      letter-spacing:0.44em; text-transform:uppercase;
+      color:var(--muted);
+    }}
+    .form-input {{
+      background:transparent;
+      border:none; border-bottom:1px solid var(--border);
+      padding:10px 0;
+      font-family:var(--sans); font-size:13px; font-weight:300;
+      color:var(--text);
+      outline:none;
+      transition:border-color 0.2s;
+      width:100%;
+    }}
+    .form-input::placeholder {{ color:var(--muted); opacity:0.55; }}
+    .form-input:focus {{ border-bottom-color:var(--text); }}
+    .form-textarea {{
+      resize:none; min-height:120px;
+      padding-top:12px; line-height:1.7;
+    }}
+    .form-submit {{
+      display:inline-flex; align-items:center; gap:10px;
+      align-self:flex-start;
+      margin-top:6px;
+      background:none; border:1px solid var(--text);
+      padding:11px 24px;
+      font-family:var(--sans); font-size:9px; font-weight:400;
+      letter-spacing:0.38em; text-transform:uppercase;
+      color:var(--text); cursor:pointer;
+      transition:background 0.22s, color 0.22s;
+    }}
+    .form-submit:hover {{ background:var(--text); color:var(--bg); }}
+    .form-success {{
+      display:none;
+      font-family:var(--serif); font-size:15px; font-style:italic;
+      font-weight:300; color:var(--muted); line-height:1.8;
+      margin-top:4px;
+    }}
+    @media (max-width:860px) {{
+      .contact-layout {{ grid-template-columns:1fr; gap:48px; }}
+    }}
+
+    /* ── LIGHTBOX ───────────────────────────────────────── */
+    .lightbox {{
+      display:none; position:fixed; inset:0;
+      background:rgba(8,8,6,0.97);
+      z-index:1000; align-items:center; justify-content:center;
+    }}
+    .lightbox.open {{ display:flex; }}
+    .lb-inner {{ position:relative; width:90vw; max-width:1100px; }}
+    .lb-video {{ position:relative; width:100%; aspect-ratio:16/9; background:#000; }}
+    .lb-video iframe {{ position:absolute; inset:0; width:100%; height:100%; border:none; }}
+    .lb-close {{
+      position:absolute; top:-44px; right:0;
+      background:none; border:none; cursor:pointer;
+      font-family:var(--sans); font-size:9px; font-weight:300;
+      letter-spacing:0.4em; text-transform:uppercase;
+      color:rgba(255,255,255,0.38);
+      display:flex; align-items:center; gap:7px;
+      transition:color 0.2s;
+    }}
+    .lb-close:hover {{ color:#fff; }}
+    .lb-close svg {{ width:11px; height:11px; stroke:currentColor; fill:none; stroke-width:1.5; }}
+    .lb-title {{
+      margin-top:12px; text-align:center;
+      font-family:var(--serif); font-size:14px; font-style:italic;
+      font-weight:300; color:rgba(255,255,255,0.32);
+    }}
+
+    /* ── FOOTER ─────────────────────────────────────────── */
+    footer {{
+      display:flex; flex-direction:column; align-items:center; gap:16px;
+      padding:28px 40px 24px;
+      border-top:1px solid var(--border);
+      font-family:var(--sans); font-size:9px; font-weight:300;
+      letter-spacing:0.36em; text-transform:uppercase; color:var(--muted);
+    }}
+    .footer-social {{
+      display:flex; gap:22px; align-items:center;
+    }}
+    .footer-social a {{
+      display:flex; align-items:center;
+      opacity:0.38; transition:opacity 0.2s;
+    }}
+    .footer-social a:hover {{ opacity:0.78; }}
+    .footer-social svg {{ display:block; }}
+
+    /* ── RESPONSIVE ─────────────────────────────────────── */
+    @media (max-width:1100px) {{
+      .vid-grid {{ grid-template-columns:repeat(3,1fr); gap:14px; }}
+    }}
+    @media (max-width:900px) {{
+      header {{ padding:20px 28px; }}
+      .page-section {{ padding:32px 28px 60px; }}
+      .vid-grid {{ grid-template-columns:repeat(2,1fr); gap:12px; }}
+      .awards-cols {{ grid-template-columns:1fr; gap:28px; }}
+    }}
+    @media (max-width:580px) {{
+      header {{ flex-direction:column; gap:16px; align-items:flex-start; padding:18px 20px; }}
+      .page-section {{ padding:24px 18px 48px; }}
+      .vid-grid {{ grid-template-columns:repeat(2,1fr); gap:10px; }}
+      nav {{ gap:16px; }}
+      .nav-link {{ font-size:10px; letter-spacing:0.16em; }}
+    }}
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ──────────────────────────────────────────────── -->
+<header>
+  <div class="logo-block">
+    <a class="logo-mark" href="#" onclick="showSection('featured');return false;">
+      <div class="logo-bar"></div>
+      <div class="logo-text">
+        <span class="logo-first">Andrew</span>
+        <span class="logo-last">Lancaster</span>
+      </div>
+    </a>
+    <span class="logo-sub">Director &nbsp;&middot;&nbsp; Composer</span>
+  </div>
+  <nav>
+    <a href="#" class="nav-link active" id="nav-featured" onclick="showSection('featured',this);return false;">Featured</a>
+    <a href="#" class="nav-link" id="nav-director"  onclick="showSection('director',this);return false;">Director</a>
+    <a href="#" class="nav-link" id="nav-composer"  onclick="showSection('composer',this);return false;">Composer</a>
+    <a href="#" class="nav-link" id="nav-about"     onclick="showSection('about',this);return false;">About</a>
+    <a href="#" class="nav-link" id="nav-contact"   onclick="showSection('contact',this);return false;">Contact</a>
+  </nav>
+</header>
+
+<!-- ── FEATURED ─────────────────────────────────────────────── -->
+<div class="page-section active" id="section-featured">
+  <div class="section-label">Directing — Featured Work</div>
+  <div class="vid-grid">
+{grid(featured)}
+  </div>
+</div>
+
+<!-- ── DIRECTOR ─────────────────────────────────────────────── -->
+<div class="page-section" id="section-director">
+  <div class="section-label">Directing</div>
+  <div class="sub-tabs">
+    <button class="sub-tab active" onclick="showSub('feature-drama',this)">Feature Drama</button>
+    <button class="sub-tab" onclick="showSub('feature-doc',this)">Feature Documentary</button>
+    <button class="sub-tab" onclick="showSub('tvc',this)">TVC</button>
+    <button class="sub-tab" onclick="showSub('music-promo',this)">Music Promo</button>
+    <button class="sub-tab" onclick="showSub('short-film',this)">Short Film</button>
+    <button class="sub-tab" onclick="showSub('short-doc',this)">Short Documentary</button>
+  </div>
+  <div class="sub-section active" id="sub-feature-drama">
+    <div class="vid-grid">{grid(feat_drama)}</div>
+  </div>
+  <div class="sub-section" id="sub-feature-doc">
+    <div class="vid-grid">{grid(feat_doc)}</div>
+  </div>
+  <div class="sub-section" id="sub-tvc">
+    <div class="vid-grid">{grid(tvc)}</div>
+  </div>
+  <div class="sub-section" id="sub-music-promo">
+    <div class="vid-grid">{grid(music_promo)}</div>
+  </div>
+  <div class="sub-section" id="sub-short-film">
+    <div class="vid-grid">{grid(short_film)}</div>
+  </div>
+  <div class="sub-section" id="sub-short-doc">
+    <div class="vid-grid">{grid(short_doc)}</div>
+  </div>
+</div>
+
+<!-- ── COMPOSER ──────────────────────────────────────────────── -->
+<div class="page-section" id="section-composer">
+  <div class="section-label">Composer</div>
+  <div class="vid-grid">
+{grid(composer)}
+  </div>
+</div>
+
+<!-- ── ABOUT ─────────────────────────────────────────────────── -->
+<div class="page-section" id="section-about">
+{ABOUT_HTML}
+</div>
+
+<!-- ── CONTACT ───────────────────────────────────────────────── -->
+<div class="page-section" id="section-contact">
+{CONTACT_HTML}
+</div>
+
+<!-- ── LIGHTBOX ──────────────────────────────────────────────── -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lb-inner">
+    <button class="lb-close" onclick="closeLightbox()">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Close
+    </button>
+    <div class="lb-video" id="lb-video"></div>
+    <div class="lb-title" id="lb-title"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-social">
+    <a href="https://www.instagram.com/andrewlancaster/" target="_blank" aria-label="Instagram">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+      </svg>
+    </a>
+    <a href="https://www.linkedin.com/in/andrewlancasterdirector" target="_blank" aria-label="LinkedIn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+        <rect x="2" y="9" width="4" height="12"/>
+        <circle cx="4" cy="4" r="2"/>
+      </svg>
+    </a>
+    <a href="https://www.imdb.com/name/nm0484108/" target="_blank" aria-label="IMDb">
+      <svg width="36" height="20" viewBox="0 0 36 20" fill="currentColor">
+        <rect width="36" height="20" rx="3" fill="currentColor" opacity="0.12"/>
+        <text x="4" y="15" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="currentColor" letter-spacing="0.5">IMDb</text>
+      </svg>
+    </a>
+  </div>
+  <div>&copy; 2025 Andrew Lancaster &nbsp;&middot;&nbsp; Director &amp; Composer &nbsp;&middot;&nbsp; London / Sydney</div>
+</footer>
+
+<script>
+  function showSection(name, el) {{
+    document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-link').forEach(a => a.classList.remove('active'));
+    var sec = document.getElementById('section-' + name);
+    if (sec) sec.classList.add('active');
+    if (el) el.classList.add('active');
+    else {{
+      var navEl = document.getElementById('nav-' + name);
+      if (navEl) navEl.classList.add('active');
+    }}
+    window.scrollTo(0, 0);
+  }}
+
+  function showSub(name, el) {{
+    var sec = el.closest('.page-section');
+    sec.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
+    sec.querySelectorAll('.sub-section').forEach(s => s.classList.remove('active'));
+    el.classList.add('active');
+    var sub = document.getElementById('sub-' + name);
+    if (sub) sub.classList.add('active');
+  }}
+
+  function openVideo(id, title) {{
+    var wrap  = document.getElementById('lb-video');
+    var modal = document.getElementById('lightbox');
+    wrap.innerHTML = '<iframe src="https://player.vimeo.com/video/' + id + '?autoplay=1&color=ffffff&title=0&byline=0&portrait=0&dnt=1" allow="autoplay; fullscreen" allowfullscreen></iframe>';
+    document.getElementById('lb-title').textContent = title || '';
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }}
+
+  function closeLightbox(e) {{
+    if (e && e.target !== e.currentTarget && !e.target.closest('.lb-close')) return;
+    document.getElementById('lb-video').innerHTML = '';
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }}
+
+  document.addEventListener('keydown', e => {{ if (e.key === 'Escape') closeLightbox(); }});
+
+  // Contact form — Formspree AJAX submission
+  var cf = document.getElementById('contact-form');
+  if (cf) {{
+    cf.addEventListener('submit', function(e) {{
+      e.preventDefault();
+      var btn = cf.querySelector('.form-submit');
+      var btnText = cf.querySelector('.form-submit-text');
+      btnText.textContent = 'Sending…';
+      btn.disabled = true;
+      fetch(cf.action, {{
+        method: 'POST',
+        body: new FormData(cf),
+        headers: {{ 'Accept': 'application/json' }}
+      }}).then(function(r) {{
+        if (r.ok) {{
+          cf.reset();
+          cf.style.display = 'none';
+          document.getElementById('form-success').style.display = 'block';
+        }} else {{
+          btnText.textContent = 'Send Message';
+          btn.disabled = false;
+          alert('Something went wrong — please try again.');
+        }}
+      }}).catch(function() {{
+        btnText.textContent = 'Send Message';
+        btn.disabled = false;
+        alert('Something went wrong — please try again.');
+      }});
+    }});
+  }}
+</script>
+</body>
+</html>"""
+
+# Write to all locations
+for path in [
+    '/sessions/trusting-lucid-cori/mnt/Projects/Andrew Lancaster Portfolio/index.html',
+    '/sessions/trusting-lucid-cori/mnt/Long form website Directing/index.html',
+    '/sessions/trusting-lucid-cori/mnt/outputs/andrew-lancaster-portfolio.html'
+]:
+    with open(path, 'w') as f:
+        f.write(html_out)
+
+print(f"Done — {len(html_out):,} chars written.")
