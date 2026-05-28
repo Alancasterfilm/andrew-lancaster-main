@@ -297,7 +297,7 @@ html_out = f"""<!DOCTYPE html>
     }}
 
     /* ── DIRECTOR DROPDOWN ──────────────────────────────── */
-    .nav-item {{ position:relative; }}
+    .nav-item {{ position:relative; display:flex; align-items:center; }}
     .nav-dropdown {{
       position:absolute; top:100%; left:-18px;
       background:var(--bg);
