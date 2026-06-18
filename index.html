@@ -159,9 +159,12 @@
       font-family:var(--sans); font-size:12.5px; font-weight:300;
       letter-spacing:0.04em;
       color:var(--muted); line-height:1.5;
-      transition:color 0.2s;
+      display:inline-block;
+      transform-origin:left center;
+      transition:color 0.2s, transform 0.35s cubic-bezier(.25,.46,.45,.94), font-weight 0.2s;
     }
-    .vid-card:hover .vid-cap { color:var(--text); }
+    .vid-card:hover .vid-cap { color:var(--text); transform:scale(1.08); font-weight:400; }
+    .vid-card.vid-active .vid-cap { color:var(--text); transform:scale(1.12); font-weight:400; }
     .vid-link {
       display:inline-block; margin-top:6px;
       font-family:var(--sans); font-size:10px; font-weight:400;
@@ -473,21 +476,21 @@
 <div class="page-section active" id="section-featured">
   <div class="section-label">Directing — Selected Work</div>
   <div class="vid-grid">
-    <div class="vid-card" onclick="openVideo('1049333416','The Art of Sound — Ep1 Preview')">
+    <div class="vid-card" onclick="openVideo('1049333416','The Art of Sound — Ep1 Preview',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1751479495985-ODIQAYI43AJFKICBZ70M/image-asset.jpeg?format=750w" loading="lazy" alt="The Art of Sound — Ep1 Preview"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">The Art of Sound &mdash; Ep1 Preview</div>
     </div>
-    <div class="vid-card" onclick="openVideo('1143881544','The Art of Sound — EP2 PT1 Khurangbin Trailer')">
+    <div class="vid-card" onclick="openVideo('1143881544','The Art of Sound — EP2 PT1 Khurangbin Trailer',this)">
       <div class="vid-thumb">
         <img src="https://i.vimeocdn.com/video/2092221516-07b8de911dd672c867a4a8d91888a0bfb8210bfb523bb819d817f001b4fccefd-d?f=webp&region=us" loading="lazy" alt="The Art of Sound — EP2 PT1 Khurangbin Trailer"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">The Art of Sound &mdash; EP2 PT1 Khurangbin Trailer</div>
     </div>
-    <div class="vid-card" onclick="openVideo('1143881229','The Art of Sound — EP2 PT2 Alok Trailer')">
+    <div class="vid-card" onclick="openVideo('1143881229','The Art of Sound — EP2 PT2 Alok Trailer',this)">
       <div class="vid-thumb">
         <img src="https://i.vimeocdn.com/video/2092221194-5331dbdb73da092f228880abb0f2f5992a01641cd83021a48120fe17a1b8c062-d?f=webp&region=us" loading="lazy" alt="The Art of Sound — EP2 PT2 Alok Trailer"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
@@ -501,98 +504,98 @@
       </div>
       <div class="vid-cap">Feature Film // Accidents Happen &mdash; Teaser w Geena Davis</div>
     </div>
-    <div class="vid-card" onclick="openVideo('240644524','Joud — Trailer')">
+    <div class="vid-card" onclick="openVideo('240644524','Joud — Trailer',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606418566093-UJ8T5ZUKPZWVUPK2AG57/image-asset.png?format=750w" loading="lazy" alt="Joud — Trailer"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">Feature Documentary // Joud &mdash; Trailer</div>
     </div>
-    <div class="vid-card" onclick="openVideo('42719324','The Lost Aviator — Trailer')">
+    <div class="vid-card" onclick="openVideo('42719324','The Lost Aviator — Trailer',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606349843308-94F2ZJPHXDUKIDT9AGS1/image-asset.png?format=750w" loading="lazy" alt="The Lost Aviator — Trailer"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">Feature Documentary // The Lost Aviator &mdash; Trailer</div>
     </div>
-    <div class="vid-card" onclick="openVideo('281776426','Director Reel — Choreography')">
+    <div class="vid-card" onclick="openVideo('281776426','Director Reel — Choreography',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606396488583-Q193PGDDB004QI2C7TC1/image-asset.jpeg?format=750w" loading="lazy" alt="Director Reel — Choreography"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">Director Reel // Choreography</div>
     </div>
-    <div class="vid-card" onclick="openVideo('586699430','What You See is What You Get')">
+    <div class="vid-card" onclick="openVideo('586699430','What You See is What You Get',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1629111769456-RN5QA1BO1L324Q8OUNWC/image-asset.png?format=750w" loading="lazy" alt="What You See is What You Get"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">What You See is What You Get &mdash; The Magnetic Heads</div>
     </div>
-    <div class="vid-card" onclick="openVideo('399009463','Custard — Funky Again')">
+    <div class="vid-card" onclick="openVideo('399009463','Custard — Funky Again',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606418924380-DKAURC64QEKAO77HBL21/image-asset.jpeg?format=750w" loading="lazy" alt="Custard — Funky Again"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">Music Promo // Custard &mdash; Funky Again</div>
     </div>
-    <div class="vid-card" onclick="openVideo('730006443','UNITY — Open Works')">
+    <div class="vid-card" onclick="openVideo('730006443','UNITY — Open Works',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1658323180612-FOKVWSUL7FH8T43VUGKJ/image-asset.jpeg?format=750w" loading="lazy" alt="UNITY — Open Works"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">UNITY &mdash; Open Works</div>
     </div>
-    <div class="vid-card" onclick="openVideo('541765854','Showtime Trailer')">
+    <div class="vid-card" onclick="openVideo('541765854','Showtime Trailer',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1684147602018-QH9GYAZ1NQ9I0RJX7Q2X/image-asset.jpeg?format=750w" loading="lazy" alt="Showtime Trailer"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">Showtime Trailer 60&rsquo;</div>
     </div>
-    <div class="vid-card" onclick="openVideo('468058737','Magnetic Heads — The Street')">
+    <div class="vid-card" onclick="openVideo('468058737','Magnetic Heads — The Street',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606346570806-FQVPCB5VGNYXMLPHGKDF/image-asset.png?format=750w" loading="lazy" alt="Magnetic Heads — The Street"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">Music Promo // Magnetic Heads &mdash; &lsquo;The Street&rsquo;</div>
     </div>
-    <div class="vid-card" onclick="openVideo('32396132','Jagwar Ma — Come Save Me')">
+    <div class="vid-card" onclick="openVideo('32396132','Jagwar Ma — Come Save Me',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606419621293-5Z3L5MD82Q1WLEH3XAOG/image-asset.png?format=750w" loading="lazy" alt="Jagwar Ma — Come Save Me"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">Music Promo // Jagwar Ma &mdash; &lsquo;Come Save Me&rsquo;</div>
     </div>
-    <div class="vid-card" onclick="openVideo('109362467','Rexona — Adam Goodes')">
+    <div class="vid-card" onclick="openVideo('109362467','Rexona — Adam Goodes',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606347117084-Q8E1FJXT1J3AGA6MOK55/image-asset.png?format=750w" loading="lazy" alt="Rexona — Adam Goodes"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">TVC // Rexona &lsquo;Adam Goodes&rsquo; // Photoplay Films</div>
     </div>
-    <div class="vid-card" onclick="openVideo('415932947','The Wednesday Night — The Perfect Scene')">
+    <div class="vid-card" onclick="openVideo('415932947','The Wednesday Night — The Perfect Scene',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606348639375-BV61NYMW9XSCLPSJT4DN/image-asset.png?format=750w" loading="lazy" alt="The Wednesday Night — The Perfect Scene"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">Music Promo // The Wednesday Night &mdash; &lsquo;The Perfect Scene&rsquo;</div>
     </div>
-    <div class="vid-card" onclick="openVideo('15620506','Levis Curve ID')">
+    <div class="vid-card" onclick="openVideo('15620506','Levis Curve ID',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606348813412-5Y2AVQJ3D151MDPRXGWY/image-asset.png?format=750w" loading="lazy" alt="Levis Curve ID"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">TVC // Levi&rsquo;s &lsquo;Curve ID&rsquo; // Photoplay Films</div>
     </div>
-    <div class="vid-card" onclick="openVideo('224294171','Womens Cricket World Cup')">
+    <div class="vid-card" onclick="openVideo('224294171','Womens Cricket World Cup',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606412084026-M7SRS9OLVGGLAN2KQUDX/image-asset.png?format=750w" loading="lazy" alt="Womens Cricket World Cup"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">TVC // Women&rsquo;s Cricket World Cup // Chrome</div>
     </div>
-    <div class="vid-card" onclick="openVideo('32697871','RTA Speed Kills')">
+    <div class="vid-card" onclick="openVideo('32697871','RTA Speed Kills',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606431977928-W1362KWVA1ZNABY71BU5/image-asset.png?format=750w" loading="lazy" alt="RTA Speed Kills"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
@@ -613,14 +616,14 @@
     <button class="sub-tab" onclick="showSub('short-film',this)">Short Film</button>
   </div>
   <div class="sub-section active" id="sub-feature-drama">
-    <div class="vid-grid">    <div class="vid-card" onclick="openVideo('38620802','Accidents Happen — Trailer w Geena Davis')">
+    <div class="vid-grid">    <div class="vid-card" onclick="openVideo('38620802','Accidents Happen — Trailer w Geena Davis',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606428511318-I362HGFORP4UVWM6M4NB/image-asset.png?format=750w" loading="lazy" alt="Accidents Happen — Trailer w Geena Davis"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">Feature Film // Accidents Happen w Geena Davis &mdash; Trailer</div>
     </div>
-    <div class="vid-card" onclick="openVideo('32698346','Accidents Happen — Teaser w Geena Davis')">
+    <div class="vid-card" onclick="openVideo('32698346','Accidents Happen — Teaser w Geena Davis',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606416849555-NEDPYYTUJP7HI0A9OGJL/image-asset.png?format=750w" loading="lazy" alt="Accidents Happen — Teaser w Geena Davis"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
@@ -629,21 +632,21 @@
     </div></div>
   </div>
   <div class="sub-section" id="sub-documentary">
-    <div class="vid-grid">    <div class="vid-card" onclick="openVideo('1049333416','The Art of Sound Ep1 Preview')">
+    <div class="vid-grid">    <div class="vid-card" onclick="openVideo('1049333416','The Art of Sound Ep1 Preview',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1751479495985-ODIQAYI43AJFKICBZ70M/image-asset.jpeg?format=750w" loading="lazy" alt="The Art of Sound Ep1 Preview"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">The Art of Sound &mdash; Ep1 Preview</div>
     </div>
-    <div class="vid-card" onclick="openVideo('1143881544','The Art of Sound — EP2 PT1 Khurangbin Trailer')">
+    <div class="vid-card" onclick="openVideo('1143881544','The Art of Sound — EP2 PT1 Khurangbin Trailer',this)">
       <div class="vid-thumb">
         <img src="https://i.vimeocdn.com/video/2092221516-07b8de911dd672c867a4a8d91888a0bfb8210bfb523bb819d817f001b4fccefd-d?f=webp&region=us" loading="lazy" alt="The Art of Sound — EP2 PT1 Khurangbin Trailer"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">The Art of Sound &mdash; EP2 PT1 Khurangbin Trailer</div>
     </div>
-    <div class="vid-card" onclick="openVideo('1143881229','The Art of Sound — EP2 PT2 Alok Trailer')">
+    <div class="vid-card" onclick="openVideo('1143881229','The Art of Sound — EP2 PT2 Alok Trailer',this)">
       <div class="vid-thumb">
         <img src="https://i.vimeocdn.com/video/2092221194-5331dbdb73da092f228880abb0f2f5992a01641cd83021a48120fe17a1b8c062-d?f=webp&region=us" loading="lazy" alt="The Art of Sound — EP2 PT2 Alok Trailer"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
@@ -657,14 +660,14 @@
       </div>
       <div class="vid-cap">Feature Documentary // Joud &mdash; Trailer</div>
     </div>
-    <div class="vid-card" onclick="openVideo('221910650','Joud Traces — Excerpt')">
+    <div class="vid-card" onclick="openVideo('221910650','Joud Traces — Excerpt',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606416276346-EN45PBCY9EOG5568AYS0/image-asset.png?format=750w" loading="lazy" alt="Joud Traces — Excerpt"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">Feature Doc // Joud &lsquo;Traces&rsquo; &mdash; Excerpt</div>
     </div>
-    <div class="vid-card" onclick="openVideo('42719324','The Lost Aviator — Trailer')">
+    <div class="vid-card" onclick="openVideo('42719324','The Lost Aviator — Trailer',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606590298323-N1GCQPUQ6M6BO19EP5ID/image-asset.png?format=750w" loading="lazy" alt="The Lost Aviator — Trailer"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
@@ -672,28 +675,28 @@
       <div class="vid-cap">Feature Documentary // The Lost Aviator &mdash; Trailer</div>
       <a class="vid-link" href="https://www.thelostaviator.com" target="_blank" onclick="event.stopPropagation()">thelostaviator.com</a>
     </div>
-    <div class="vid-card" onclick="openVideo('279817902','Sothebys Mark Hix')">
+    <div class="vid-card" onclick="openVideo('279817902','Sothebys Mark Hix',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606418170004-CETXQHPJTL8Y3CUQC4XW/image-asset.jpeg?format=750w" loading="lazy" alt="Sothebys Mark Hix"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">Sotheby&rsquo;s &mdash; Mark Hix Contemporary Art</div>
     </div>
-    <div class="vid-card" onclick="openVideo('228356286','Save Soho Pasquale')">
+    <div class="vid-card" onclick="openVideo('228356286','Save Soho Pasquale',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606599080799-YK6P4SHKA07FOUKV17K8/image-asset.png?format=750w" loading="lazy" alt="Save Soho Pasquale"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">Save Soho &mdash; Pasquale</div>
     </div>
-    <div class="vid-card" onclick="openVideo('57031222','Sonya Ryan Australian of the Year')">
+    <div class="vid-card" onclick="openVideo('57031222','Sonya Ryan Australian of the Year',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606599646295-PO36TJ3G97EQRHI43TN4/image-asset.png?format=750w" loading="lazy" alt="Sonya Ryan Australian of the Year"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">Sonya Ryan &mdash; Australian of the Year</div>
     </div>
-    <div class="vid-card" onclick="openVideo('32698036','Town of Speed Gabby')">
+    <div class="vid-card" onclick="openVideo('32698036','Town of Speed Gabby',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606599286373-4B6S1HRIKTYVF3TU4JO3/image-asset.png?format=750w" loading="lazy" alt="Town of Speed Gabby"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
@@ -702,70 +705,70 @@
     </div></div>
   </div>
   <div class="sub-section" id="sub-tvc">
-    <div class="vid-grid">    <div class="vid-card" onclick="openVideo('26713716','TVC Flickerfest')">
+    <div class="vid-grid">    <div class="vid-card" onclick="openVideo('26713716','TVC Flickerfest',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606598059683-MTA2FU348M4GE96JBAVH/image-asset.png?format=750w" loading="lazy" alt="TVC Flickerfest"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">TVC // Flickerfest</div>
     </div>
-    <div class="vid-card" onclick="openVideo('15620506','Levis Curve ID')">
+    <div class="vid-card" onclick="openVideo('15620506','Levis Curve ID',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606348813412-5Y2AVQJ3D151MDPRXGWY/image-asset.png?format=750w" loading="lazy" alt="Levis Curve ID"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">TVC // Levi&rsquo;s &lsquo;Curve ID&rsquo; // Photoplay Films</div>
     </div>
-    <div class="vid-card" onclick="openVideo('109362467','Rexona Adam Goodes')">
+    <div class="vid-card" onclick="openVideo('109362467','Rexona Adam Goodes',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606347117084-Q8E1FJXT1J3AGA6MOK55/image-asset.png?format=750w" loading="lazy" alt="Rexona Adam Goodes"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">TVC // Rexona &lsquo;Adam Goodes&rsquo; // Photoplay Films</div>
     </div>
-    <div class="vid-card" onclick="openVideo('366543772','TUI Tours Cape Town')">
+    <div class="vid-card" onclick="openVideo('366543772','TUI Tours Cape Town',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606597577401-JT1EYKWSVMYS6D75DX3O/image-asset.png?format=750w" loading="lazy" alt="TUI Tours Cape Town"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">TVC // TUI Tours Cape Town // Chrome Productions</div>
     </div>
-    <div class="vid-card" onclick="openVideo('224294171','Womens Cricket World Cup')">
+    <div class="vid-card" onclick="openVideo('224294171','Womens Cricket World Cup',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606412084026-M7SRS9OLVGGLAN2KQUDX/image-asset.png?format=750w" loading="lazy" alt="Womens Cricket World Cup"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">TVC // Women&rsquo;s Cricket World Cup // Chrome</div>
     </div>
-    <div class="vid-card" onclick="openVideo('483824019','Zariot')">
+    <div class="vid-card" onclick="openVideo('483824019','Zariot',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606395248765-RPUCBV7WYB3J1N2J7QQ1/image-asset.png?format=750w" loading="lazy" alt="Zariot"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">TVC // Zariot</div>
     </div>
-    <div class="vid-card" onclick="openVideo('224451684','Krugerrand Legacy')">
+    <div class="vid-card" onclick="openVideo('224451684','Krugerrand Legacy',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606431518582-V6H498VOA7VEW0WA0RRX/image-asset.png?format=750w" loading="lazy" alt="Krugerrand Legacy"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">TVC // Krugerrand &lsquo;Legacy&rsquo;</div>
     </div>
-    <div class="vid-card" onclick="openVideo('96550861','Vicks Vapour Fresh Fish')">
+    <div class="vid-card" onclick="openVideo('96550861','Vicks Vapour Fresh Fish',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606598366431-856K1KP1T0S4A1WBUELI/image-asset.png?format=750w" loading="lazy" alt="Vicks Vapour Fresh Fish"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">TVC // Vicks Vapour &lsquo;Fresh Fish&rsquo; // Photoplay Films</div>
     </div>
-    <div class="vid-card" onclick="openVideo('32697871','RTA Speed Kills')">
+    <div class="vid-card" onclick="openVideo('32697871','RTA Speed Kills',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606431977928-W1362KWVA1ZNABY71BU5/image-asset.png?format=750w" loading="lazy" alt="RTA Speed Kills"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">TVC // Road &amp; Traffic Authority &mdash; Speed Kills</div>
     </div>
-    <div class="vid-card" onclick="openVideo('730006443','UNITY — Open Works')">
+    <div class="vid-card" onclick="openVideo('730006443','UNITY — Open Works',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1658323180612-FOKVWSUL7FH8T43VUGKJ/image-asset.jpeg?format=750w" loading="lazy" alt="UNITY — Open Works"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
@@ -774,63 +777,63 @@
     </div></div>
   </div>
   <div class="sub-section" id="sub-music-promo">
-    <div class="vid-grid">    <div class="vid-card" onclick="openVideo('1046412592','Heart Attacks — Custard')">
+    <div class="vid-grid">    <div class="vid-card" onclick="openVideo('1046412592','Heart Attacks — Custard',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1736776535459-N079HM8BNUQQVVM7PJA2/image-asset.jpeg?format=750w" loading="lazy" alt="Heart Attacks — Custard"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">Heart Attacks &mdash; Custard</div>
     </div>
-    <div class="vid-card" onclick="openVideo('1046415351','Someday — Custard')">
+    <div class="vid-card" onclick="openVideo('1046415351','Someday — Custard',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1736776413525-IHVX5XSENVLYUCUZJWIM/image-asset.jpeg?format=750w" loading="lazy" alt="Someday — Custard"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">Someday &mdash; Custard</div>
     </div>
-    <div class="vid-card" onclick="openVideo('735825176','The Bay Fire — Jackson Milas')">
+    <div class="vid-card" onclick="openVideo('735825176','The Bay Fire — Jackson Milas',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1684147826363-20SJ88NJGC66E3OUVLP0/image-asset.jpeg?format=750w" loading="lazy" alt="The Bay Fire — Jackson Milas"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">The Bay Fire &mdash; Jackson Milas</div>
     </div>
-    <div class="vid-card" onclick="openVideo('586699430','What You See is What You Get')">
+    <div class="vid-card" onclick="openVideo('586699430','What You See is What You Get',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1629111769456-RN5QA1BO1L324Q8OUNWC/image-asset.png?format=750w" loading="lazy" alt="What You See is What You Get"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">What You See is What You Get &mdash; The Magnetic Heads</div>
     </div>
-    <div class="vid-card" onclick="openVideo('399009463','Custard — Funky Again')">
+    <div class="vid-card" onclick="openVideo('399009463','Custard — Funky Again',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606418924380-DKAURC64QEKAO77HBL21/image-asset.jpeg?format=750w" loading="lazy" alt="Custard — Funky Again"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">Music Promo // Custard &mdash; Funky Again</div>
     </div>
-    <div class="vid-card" onclick="openVideo('468058737','Magnetic Heads — The Street')">
+    <div class="vid-card" onclick="openVideo('468058737','Magnetic Heads — The Street',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606346570806-FQVPCB5VGNYXMLPHGKDF/image-asset.png?format=750w" loading="lazy" alt="Magnetic Heads — The Street"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">Music Promo // Magnetic Heads &mdash; &lsquo;The Street&rsquo;</div>
     </div>
-    <div class="vid-card" onclick="openVideo('32396132','Jagwar Ma — Come Save Me')">
+    <div class="vid-card" onclick="openVideo('32396132','Jagwar Ma — Come Save Me',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1607023812134-DE665E9UFIB6TCPJVP5N/image-asset.png?format=750w" loading="lazy" alt="Jagwar Ma — Come Save Me"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">Music Promo // Jagwar Ma &mdash; &lsquo;Come Save Me&rsquo;</div>
     </div>
-    <div class="vid-card" onclick="openVideo('415932947','The Wednesday Night')">
+    <div class="vid-card" onclick="openVideo('415932947','The Wednesday Night',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1607073703198-5Y5K7LTJTGILENZ9YXYO/image-asset.png?format=750w" loading="lazy" alt="The Wednesday Night"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">Music Promo // The Wednesday Night &mdash; &lsquo;The Perfect Scene&rsquo;</div>
     </div>
-    <div class="vid-card" onclick="openVideo('281776426','Director Reel — Choreography')">
+    <div class="vid-card" onclick="openVideo('281776426','Director Reel — Choreography',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606396488583-Q193PGDDB004QI2C7TC1/image-asset.jpeg?format=750w" loading="lazy" alt="Director Reel — Choreography"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
@@ -839,21 +842,21 @@
     </div></div>
   </div>
   <div class="sub-section" id="sub-short-film">
-    <div class="vid-grid">    <div class="vid-card" onclick="openVideo('26712723','Universal Appliance Co')">
+    <div class="vid-grid">    <div class="vid-card" onclick="openVideo('26712723','Universal Appliance Co',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606594990026-C6HG3L6GM7PZEY8JRMKC/image-asset.png?format=750w" loading="lazy" alt="Universal Appliance Co"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">Short Film // Universal Appliance Co &mdash; AFI Best Sound</div>
     </div>
-    <div class="vid-card" onclick="openVideo('26713355','Palace Cafe')">
+    <div class="vid-card" onclick="openVideo('26713355','Palace Cafe',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606594351740-M2T2DGEFBC1IXWJUOC8A/image-asset.png?format=750w" loading="lazy" alt="Palace Cafe"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">Short Film // Palace Cafe &mdash; Gold Plaque Chicago</div>
     </div>
-    <div class="vid-card" onclick="openVideo('26711610','In Search of Mike')">
+    <div class="vid-card" onclick="openVideo('26711610','In Search of Mike',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606594151540-2AZQZBL6SASYJESGYJRW/image-asset.png?format=750w" loading="lazy" alt="In Search of Mike"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
@@ -867,70 +870,70 @@
 <div class="page-section" id="section-composer">
   <div class="section-label">Composer</div>
   <div class="vid-grid">
-    <div class="vid-card" onclick="openVideo('yt_xj_lLatwwrU','The Vile — Trailer')">
+    <div class="vid-card" onclick="openVideo('yt_xj_lLatwwrU','The Vile — Trailer',this)">
       <div class="vid-thumb">
         <img src="https://i.ytimg.com/vi/xj_lLatwwrU/maxresdefault.jpg" loading="lazy" alt="The Vile — Trailer"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">Composer // The Vile &mdash; BFI London Film Festival 2025</div>
     </div>
-    <div class="vid-card" onclick="openVideo('904407016','Inshallah a Boy')">
+    <div class="vid-card" onclick="openVideo('904407016','Inshallah a Boy',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1743770259233-90RNDCC1UY0514WD8YCO/image-asset.jpeg?format=750w" loading="lazy" alt="Inshallah a Boy"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">Composer // Inshallah a Boy</div>
     </div>
-    <div class="vid-card" onclick="openVideo('697079907','LEGO Technic Hack the Pullback')">
+    <div class="vid-card" onclick="openVideo('697079907','LEGO Technic Hack the Pullback',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1653209616906-EXL03JJGILTK8VWASBLP/image-asset.jpeg?format=750w" loading="lazy" alt="LEGO Technic Hack the Pullback"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">Composer // LEGO Technic &mdash; Hack the Pullback</div>
     </div>
-    <div class="vid-card" onclick="openVideo('473934153','I Am You Feature Film Trailer')">
+    <div class="vid-card" onclick="openVideo('473934153','I Am You Feature Film Trailer',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606582505487-9SRVC3X5JW8S2A0O7BQC/image-asset.png?format=750w" loading="lazy" alt="I Am You Feature Film Trailer"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">Composer // I Am You &mdash; Feature Film Trailer</div>
     </div>
-    <div class="vid-card" onclick="openVideo('560298901','McCafe')">
+    <div class="vid-card" onclick="openVideo('560298901','McCafe',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1653219034992-XPBM0DLQJ7TBDCIQNTOV/image-asset.jpeg?format=750w" loading="lazy" alt="McCafe"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">Composer // McCafe</div>
     </div>
-    <div class="vid-card" onclick="openVideo('310775389','Ladylucks TVC')">
+    <div class="vid-card" onclick="openVideo('310775389','Ladylucks TVC',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606581701295-D2GC63LGKC9NR1A9SR0C/image-asset.png?format=750w" loading="lazy" alt="Ladylucks TVC"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">Composer // Ladylucks TVC</div>
     </div>
-    <div class="vid-card" onclick="openVideo('313288829','Ferrari Race to Immortality')">
+    <div class="vid-card" onclick="openVideo('313288829','Ferrari Race to Immortality',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606581634563-SMEDYEEC41MEUDGA2XFO/image-asset.png?format=750w" loading="lazy" alt="Ferrari Race to Immortality"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">Composer // Ferrari: Race to Immortality &mdash; Feature Doc</div>
     </div>
-    <div class="vid-card" onclick="openVideo('696644674','Ahmad Tea')">
+    <div class="vid-card" onclick="openVideo('696644674','Ahmad Tea',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1653218981746-6VHPG94ZH3SXRVLNK5D2/image-asset.jpeg?format=750w" loading="lazy" alt="Ahmad Tea"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">Composer // Ahmad Tea</div>
     </div>
-    <div class="vid-card" onclick="openVideo('696650280','Melbourne New Year Drone')">
+    <div class="vid-card" onclick="openVideo('696650280','Melbourne New Year Drone',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1653218696308-ES8KDT0Q78Q9KL5RTZB0/image-asset.jpeg?format=750w" loading="lazy" alt="Melbourne New Year Drone"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
       <div class="vid-cap">Composer // Melbourne New Year Drone</div>
     </div>
-    <div class="vid-card" onclick="openVideo('483824019','Zariot')">
+    <div class="vid-card" onclick="openVideo('483824019','Zariot',this)">
       <div class="vid-thumb">
         <img src="https://images.squarespace-cdn.com/content/v1/574c63588259b5de6738b37d/1606395248765-RPUCBV7WYB3J1N2J7QQ1/image-asset.png?format=750w" loading="lazy" alt="Zariot"/>
         <div class="vid-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
@@ -1115,7 +1118,9 @@
     if (sub) sub.classList.add('active');
   }
 
-  function openVideo(id, title) {
+  function openVideo(id, title, cardEl) {
+    document.querySelectorAll('.vid-card').forEach(function(c){ c.classList.remove('vid-active'); });
+    if (cardEl) cardEl.classList.add('vid-active');
     var wrap  = document.getElementById('lb-video');
     var modal = document.getElementById('lightbox');
     var src;
